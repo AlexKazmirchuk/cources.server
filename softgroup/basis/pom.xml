@@ -14,16 +14,13 @@
         <module>common-datamapper</module>
         <module>common-router</module>
         <module>common-protocol</module>
-
     </modules>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
-
     </dependencies>
 
 </project>
