@@ -12,6 +12,7 @@
 
 	<modules>
 		<module>authorization</module>
+		<module>profile</module>
 	</modules>
 
 	<properties>
