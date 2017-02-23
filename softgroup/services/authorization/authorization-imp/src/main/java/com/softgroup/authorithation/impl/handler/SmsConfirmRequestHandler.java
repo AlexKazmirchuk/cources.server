@@ -13,14 +13,14 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class SmsConfirmRequestHandler <T extends SmsConfirmRequest, R extends SmsConfirmResponse> extends AbstractRequestHandler implements AuthorizationRequestHandler {
+public class SmsConfirmRequestHandler extends AbstractRequestHandler implements AuthorizationRequestHandler {
     @Override
     public String getName() {
         return "sms_confirm";
     }
 
     @Override
-    public Response handle(Request msg) {
+    public Response<SmsConfirmResponse> handle(Request msg) {
         // implement later
 
 
