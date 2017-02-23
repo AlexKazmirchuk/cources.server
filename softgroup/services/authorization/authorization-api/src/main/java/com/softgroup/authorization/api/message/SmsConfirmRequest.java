@@ -8,14 +8,14 @@ import com.softgroup.common.protocol.RequestData;
 public class SmsConfirmRequest implements RequestData {
     private static final long serialVersionUID = 4895237867740981751L;
 
-    private Integer authCode;
+    private String authCode;
     private String registrationRequestUuid;
 
-    public Integer getAuthCode() {
+    public String getAuthCode() {
         return authCode;
     }
 
-    public void setAuthCode(Integer authCode) {
+    public void setAuthCode(String authCode) {
         this.authCode = authCode;
     }
 

@@ -9,31 +9,31 @@ import com.softgroup.common.protocol.ResponseData;
 public class RegisterResponse implements ResponseData {
 	private static final long serialVersionUID = -5146888202653750948L;
 
-	private Integer registrationRequestUuid;
-	private Integer registrationTimeoutSec;
-	private Integer authCode;
+	private String registrationRequestUuid;
+	private String registrationTimeoutSec;
+	private String authCode;
 
-	public Integer getRegistrationRequestUuid() {
+	public String getRegistrationRequestUuid() {
 		return registrationRequestUuid;
 	}
 
-	public void setRegistrationRequestUuid(Integer registrationRequestUuid) {
+	public void setRegistrationRequestUuid(String registrationRequestUuid) {
 		this.registrationRequestUuid = registrationRequestUuid;
 	}
 
-	public Integer getRegistrationTimeoutSec() {
+	public String getRegistrationTimeoutSec() {
 		return registrationTimeoutSec;
 	}
 
-	public void setRegistrationTimeoutSec(Integer registrationTimeoutSec) {
+	public void setRegistrationTimeoutSec(String registrationTimeoutSec) {
 		this.registrationTimeoutSec = registrationTimeoutSec;
 	}
 
-	public Integer getAuthCode() {
+	public String getAuthCode() {
 		return authCode;
 	}
 
-	public void setAuthCode(Integer authCode) {
+	public void setAuthCode(String authCode) {
 		this.authCode = authCode;
 	}
 }
