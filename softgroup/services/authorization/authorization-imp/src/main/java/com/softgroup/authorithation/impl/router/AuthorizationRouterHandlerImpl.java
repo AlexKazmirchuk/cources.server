@@ -2,19 +2,12 @@ package com.softgroup.authorithation.impl.router;
 
 import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.authorization.api.router.AuthorizationRouterHandler;
-import com.softgroup.common.protocol.Request;
-import com.softgroup.common.protocol.Response;
 import com.softgroup.common.router.api.AbstractRouterHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
- * Created by sasha on 23.02.17.
+ * @author AlexKazmirchuk
+ * @since 24.02.17.
  */
 
 @Component
