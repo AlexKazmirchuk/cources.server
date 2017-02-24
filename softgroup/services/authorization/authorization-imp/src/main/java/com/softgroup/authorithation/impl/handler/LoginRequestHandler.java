@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class LoginRequestHandler extends AbstractRequestHandler implements AuthorizationRequestHandler {
+public class LoginRequestHandler extends AbstractRequestHandler<LoginRequest,LoginResponse> implements AuthorizationRequestHandler {
 
     @Override
     public String getName() {
@@ -21,7 +21,7 @@ public class LoginRequestHandler extends AbstractRequestHandler implements Autho
     }
 
     @Override
-    public Response<LoginResponse> handle(Request msg) {
+    public Response<LoginResponse> handle(Request<?> msg) {
         // implement later
 
 
