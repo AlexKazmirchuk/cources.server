@@ -18,31 +18,12 @@ import java.util.Map;
  */
 
 @Component
-public class AuthorizationRouterHandlerImpl extends AbstractRouterHandler implements AuthorizationRouterHandler{
-
-    @Autowired
-    private List<AuthorizationRequestHandler> handlers;
-
-    private Map<String, AuthorizationRequestHandler> authRequestHandlers = new HashMap<>();
-
-    @PostConstruct
-    public void init(){
-        for (AuthorizationRequestHandler handler: handlers) {
-            authRequestHandlers.put(handler.getName(), handler);
-        }
-    }
+public class AuthorizationRouterHandlerImpl
+        extends AbstractRouterHandler<AuthorizationRequestHandler>
+        implements AuthorizationRouterHandler{
 
     public String getName() {
         return "authorization";
     }
 
-    @Override
-    public String getRouteKey(Request msg) {
-        return msg.getHeader().getCommand();
-    }
-
-    @Override
-    public Response<?> handle(Request msg) {
-        return authRequestHandlers.get(getRouteKey(msg)).handle(msg);
-    }
 }
