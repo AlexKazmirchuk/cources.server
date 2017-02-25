@@ -13,7 +13,9 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class RegisterRequestHandler extends AbstractRequestHandler<RegisterRequest,RegisterResponse> implements AuthorizationRequestHandler {
+public class RegisterRequestHandler
+        extends AbstractRequestHandler<RegisterRequest,RegisterResponse>
+        implements AuthorizationRequestHandler {
 
     @Override
     public String getName() {
@@ -21,7 +23,7 @@ public class RegisterRequestHandler extends AbstractRequestHandler<RegisterReque
     }
 
     @Override
-    public Response<RegisterResponse> handle(Request<?> msg) {
+    public Response<RegisterResponse> doHandle(Request<RegisterRequest> msg) {
         // implement later
 
 

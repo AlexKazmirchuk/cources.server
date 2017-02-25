@@ -24,7 +24,7 @@ public class SetProfileSettingsRequestHandler
     }
 
     @Override
-    public Response<SetProfileSettingsResponse> handle(Request<?> msg) {
+    public Response<SetProfileSettingsResponse> doHandle(Request<SetProfileSettingsRequest> msg) {
         // implement later
 
 

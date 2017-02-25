@@ -24,7 +24,7 @@ public class GetLastTimeOnlineRequestHandler
     }
 
     @Override
-    public Response<GetLastTimeOnlineResponse> handle(Request<?> msg) {
+    public Response<GetLastTimeOnlineResponse> doHandle(Request<GetLastTimeOnlineRequest> msg) {
         // implement later
 
 

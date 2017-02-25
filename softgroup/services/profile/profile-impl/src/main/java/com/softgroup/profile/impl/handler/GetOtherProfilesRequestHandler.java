@@ -24,7 +24,7 @@ public class GetOtherProfilesRequestHandler
     }
 
     @Override
-    public Response<GetOtherProfilesResponse> handle(Request<?> msg) {
+    public Response<GetOtherProfilesResponse> doHandle(Request<GetOtherProfilesRequest> msg) {
         // implement later
 
 

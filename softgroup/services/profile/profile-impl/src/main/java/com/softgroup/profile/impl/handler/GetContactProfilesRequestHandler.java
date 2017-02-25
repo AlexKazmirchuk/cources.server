@@ -24,7 +24,7 @@ public class GetContactProfilesRequestHandler
     }
 
     @Override
-    public Response<GetContactProfilesResponse> handle(Request<?> msg) {
+    public Response<GetContactProfilesResponse> doHandle(Request<GetContactProfilesRequest> msg) {
         // implement later
 
 

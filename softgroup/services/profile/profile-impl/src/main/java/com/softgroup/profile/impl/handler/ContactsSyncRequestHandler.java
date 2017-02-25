@@ -24,7 +24,7 @@ public class ContactsSyncRequestHandler
     }
 
     @Override
-    public Response<ContactsSyncResponse> handle(Request<?> msg) {
+    public Response<ContactsSyncResponse> doHandle(Request<ContactsSyncRequest> msg) {
         // implement later
 
 
