@@ -8,6 +8,8 @@ import com.softgroup.common.protocol.ResponseData;
  */
 public class LoginResponse implements ResponseData{
 
+	private static final long serialVersionUID = 5767279680451003633L;
+
 	private String token;
 
 	public String getToken() {
