@@ -6,12 +6,14 @@ import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.messenger.api.message.SendMessageRequest;
 import com.softgroup.messenger.api.message.SendMessageResponse;
 import com.softgroup.messenger.api.router.MessengerRequestHandler;
+import org.springframework.stereotype.Component;
 
 /**
  * @author AlexKazmirchuk
  * @since 26.02.17.
  */
 
+@Component
 public class SendMessageRequestHandler
         extends AbstractRequestHandler<SendMessageRequest,SendMessageResponse>
         implements MessengerRequestHandler {

@@ -6,12 +6,14 @@ import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.messenger.api.message.GetConversationsByIdsRequest;
 import com.softgroup.messenger.api.message.GetConversationsByIdsResponse;
 import com.softgroup.messenger.api.router.MessengerRequestHandler;
+import org.springframework.stereotype.Component;
 
 /**
  * @author AlexKazmirchuk
  * @since 26.02.17.
  */
 
+@Component
 public class GetConversationsByIdsRequestHandler
         extends AbstractRequestHandler<GetConversationsByIdsRequest,GetConversationsByIdsResponse>
         implements MessengerRequestHandler {
