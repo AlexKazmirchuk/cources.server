@@ -13,7 +13,7 @@ import java.util.Map;
  * @since 27.02.17.
  */
 
-public abstract class AbstractFactory<T extends Handler> {
+public abstract class AbstractFactory<T extends Handler> implements Factory<T>{
 
     @Autowired
     private List<T> handlers;
