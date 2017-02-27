@@ -4,11 +4,11 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstractRouterHandler<T extends Handler>
+public abstract class AbstractRouterHandler<T extends RequestHandler>
 		implements Handler {
 
 	@Autowired
-	private HandlerAbstractFactory<T> handlerFactory;
+	private HandlerFactory<T> handlerFactory;
 
 	@Override
 	public Response<?> handle(Request<?> msg) {
