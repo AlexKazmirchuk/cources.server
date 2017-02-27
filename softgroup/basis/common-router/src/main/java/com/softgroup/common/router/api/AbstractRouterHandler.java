@@ -8,7 +8,7 @@ public abstract class AbstractRouterHandler<T extends Handler>
 		implements Handler {
 
 	@Autowired
-	private HandlerFactory<T> handlerFactory;
+	private HandlerAbstractFactory<T> handlerFactory;
 
 	@Override
 	public Response<?> handle(Request<?> msg) {
