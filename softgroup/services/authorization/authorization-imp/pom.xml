@@ -8,7 +8,6 @@
 		<version>0.0.1</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-
 	<artifactId>authorization-impl</artifactId>
 
 	<dependencies>
@@ -16,7 +15,6 @@
 			<groupId>com.softgroup</groupId>
 			<artifactId>authorization-api</artifactId>
 		</dependency>
-
 	</dependencies>
 
 </project>
