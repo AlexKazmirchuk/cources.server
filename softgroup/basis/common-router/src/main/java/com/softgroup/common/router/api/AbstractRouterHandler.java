@@ -4,7 +4,7 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstractRouterHandler<T extends RequestHandler>
+public abstract class AbstractRouterHandler<T extends Handler>
 		implements Handler {
 
 	@Autowired
