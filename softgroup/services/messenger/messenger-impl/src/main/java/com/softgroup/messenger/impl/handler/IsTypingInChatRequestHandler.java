@@ -18,7 +18,7 @@ public class IsTypingInChatRequestHandler
 
     @Override
     public String getName() {
-        return "create_conversation";
+        return "is_typing_in_chat";
     }
 
     @Override

@@ -18,7 +18,7 @@ public class DeleteConversationRequestHandler
 
     @Override
     public String getName() {
-        return "create_conversation";
+        return "delete_conversation";
     }
 
     @Override

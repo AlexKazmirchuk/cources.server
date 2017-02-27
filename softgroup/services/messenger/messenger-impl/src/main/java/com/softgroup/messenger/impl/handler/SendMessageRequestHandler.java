@@ -18,7 +18,7 @@ public class SendMessageRequestHandler
 
     @Override
     public String getName() {
-        return "create_conversation";
+        return "send_message";
     }
 
     @Override

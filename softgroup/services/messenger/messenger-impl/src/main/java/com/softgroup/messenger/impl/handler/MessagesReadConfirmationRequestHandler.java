@@ -18,7 +18,7 @@ public class MessagesReadConfirmationRequestHandler
 
     @Override
     public String getName() {
-        return "create_conversation";
+        return "messages_read_confirmation";
     }
 
     @Override

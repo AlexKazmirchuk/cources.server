@@ -18,7 +18,7 @@ public class UpdateConversationSettingsRequestHandler
 
     @Override
     public String getName() {
-        return "create_conversation";
+        return "update_conversation_settings";
     }
 
     @Override

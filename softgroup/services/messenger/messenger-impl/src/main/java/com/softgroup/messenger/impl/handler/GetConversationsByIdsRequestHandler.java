@@ -18,7 +18,7 @@ public class GetConversationsByIdsRequestHandler
 
     @Override
     public String getName() {
-        return "create_conversation";
+        return "get_conversations_by_ids";
     }
 
     @Override
