@@ -8,12 +8,11 @@
 		<version>0.0.1</version>
 	</parent>
 	<artifactId>services</artifactId>
-
 	<packaging>pom</packaging>
 
 	<modules>
-
 		<module>authorization</module>
+		<module>profile</module>
 	</modules>
 
 	<properties>
@@ -23,19 +22,16 @@
 
 	<dependencyManagement>
 		<dependencies>
-
 			<dependency>
 				<groupId>com.softgroup</groupId>
 				<artifactId>common-protocol</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.softgroup</groupId>
 				<artifactId>common-router</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-
 		</dependencies>
 	</dependencyManagement>
 
@@ -44,12 +40,10 @@
 			<groupId>com.softgroup</groupId>
 			<artifactId>common-datamapper</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.softgroup</groupId>
 			<artifactId>common-protocol</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.softgroup</groupId>
 			<artifactId>common-router</artifactId>
