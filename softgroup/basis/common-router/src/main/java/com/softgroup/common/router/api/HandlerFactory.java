@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class HandlerFactory<T extends Handler> extends AbstractFactory<T> {
+public class HandlerFactory<T extends RequestHandler> extends AbstractFactory<T> {
 
     public String getRouteKey(Request<?> msg) {
         return msg.getHeader().getCommand();

@@ -6,12 +6,14 @@ import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.messenger.api.message.UpdateConversationSettingsRequest;
 import com.softgroup.messenger.api.message.UpdateConversationSettingsResponse;
 import com.softgroup.messenger.api.router.MessengerRequestHandler;
+import org.springframework.stereotype.Component;
 
 /**
  * @author AlexKazmirchuk
  * @since 26.02.17.
  */
 
+@Component
 public class UpdateConversationSettingsRequestHandler
         extends AbstractRequestHandler<UpdateConversationSettingsRequest,UpdateConversationSettingsResponse>
         implements MessengerRequestHandler {

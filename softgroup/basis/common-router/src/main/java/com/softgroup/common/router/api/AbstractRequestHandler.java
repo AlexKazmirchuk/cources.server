@@ -18,21 +18,12 @@ public abstract class AbstractRequestHandler
 	@Autowired
 	private DataMapper mapper;
 
-	private static final Class genericClass;
-
-	static {
-		genericClass = (Class) ((ParameterizedType) AbstractRequestHandler.class
-				.getGenericSuperclass())
-				.getActualTypeArguments()[0];
-	}
-
 	@Override
 	public Response<R> handle(Request<?> msg) {
 		Request<T> request = new Request<>();
 		request.setHeader(msg.getHeader());
 
-		// todo check if working in future
-		request.setData(mapper.convert((Map<String, Object>) msg.getData(), (Class<T>) genericClass));
+		// todo make parsing ? data into T data
 
 		return doHandle(request);
 	}

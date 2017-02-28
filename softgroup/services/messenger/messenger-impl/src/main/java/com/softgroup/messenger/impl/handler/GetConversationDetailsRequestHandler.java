@@ -6,12 +6,14 @@ import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.messenger.api.message.GetConversationDetailsRequest;
 import com.softgroup.messenger.api.message.GetConversationDetailsResponse;
 import com.softgroup.messenger.api.router.MessengerRequestHandler;
+import org.springframework.stereotype.Component;
 
 /**
  * @author AlexKazmirchuk
  * @since 26.02.17.
  */
 
+@Component
 public class GetConversationDetailsRequestHandler
         extends AbstractRequestHandler<GetConversationDetailsRequest,GetConversationDetailsResponse>
         implements MessengerRequestHandler {
