@@ -1,6 +1,6 @@
 package com.softgroup.main.router;
 
-import com.softgroup.main.router.configuration.MainRouterAppCfg;
+import com.softgroup.main.router.configuration.FirstRouterAppCfg;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,15 +17,15 @@ import static org.junit.Assert.assertThat;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {MainRouterAppCfg.class})
+@ContextConfiguration(classes = {FirstRouterAppCfg.class})
 public class MainRouterAppCfgIT {
 
     @Autowired
-    private MainRouter mainRouter;
+    private FirstRouter firstRouter;
 
     @Test
     public void test(){
-        assertThat(mainRouter, CoreMatchers.notNullValue());
-        assertEquals(MainRouter.class, mainRouter.getClass());
+        assertThat(firstRouter, CoreMatchers.notNullValue());
+        assertEquals(FirstRouter.class, firstRouter.getClass());
     }
 }
