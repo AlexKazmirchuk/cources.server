@@ -15,7 +15,8 @@
 		<module>profile</module>
 		<module>authorization</module>
 		<module>messenger</module>
-	</modules>
+        <module>main-router</module>
+    </modules>
 
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
