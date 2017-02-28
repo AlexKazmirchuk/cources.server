@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-@ComponentScan("com.softgroup.main.router")
+@ComponentScan("com.softgroup")
 public class MainRouterAppCfg {
 }
