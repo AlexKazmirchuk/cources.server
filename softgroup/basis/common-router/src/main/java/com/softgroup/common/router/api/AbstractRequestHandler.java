@@ -21,9 +21,10 @@ public abstract class AbstractRequestHandler
 	private static final Class genericClass;
 
 	static {
-		genericClass = (Class) ((ParameterizedType) AbstractRequestHandler.class
-				.getGenericSuperclass())
-				.getActualTypeArguments()[0];
+		genericClass = null;
+//		genericClass = (Class) ((ParameterizedType) AbstractRequestHandler.class
+//				.getGenericSuperclass())
+//				.getActualTypeArguments()[0];
 	}
 
 	@Override
@@ -32,7 +33,7 @@ public abstract class AbstractRequestHandler
 		request.setHeader(msg.getHeader());
 
 		// todo check if working in future
-		request.setData(mapper.convert((Map<String, Object>) msg.getData(), (Class<T>) genericClass));
+//		request.setData(mapper.convert((Map<String, Object>) msg.getData(), (Class<T>) genericClass));
 
 		return doHandle(request);
 	}
