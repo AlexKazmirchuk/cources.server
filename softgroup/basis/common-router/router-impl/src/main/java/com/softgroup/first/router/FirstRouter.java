@@ -1,4 +1,4 @@
-package com.softgroup.main.router;
+package com.softgroup.first.router;
 
 import com.softgroup.common.router.api.AbstractRouterHandler;
 import com.softgroup.common.router.api.CommonRouterHandler;
@@ -16,6 +16,6 @@ public class FirstRouter extends AbstractRouterHandler<CommonRouterHandler>
 
     @Override
     public String getName() {
-        return "main";
+        return "first_router";
     }
 }

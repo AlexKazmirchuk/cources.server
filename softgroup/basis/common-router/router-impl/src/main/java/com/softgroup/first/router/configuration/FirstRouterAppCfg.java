@@ -1,4 +1,4 @@
-package com.softgroup.main.router.configuration;
+package com.softgroup.first.router.configuration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-@ComponentScan("com.softgroup")
+@ComponentScan("com.softgroup.first.router")
 public class FirstRouterAppCfg {
 }

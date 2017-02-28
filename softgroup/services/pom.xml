@@ -15,7 +15,6 @@
 		<module>profile</module>
 		<module>authorization</module>
 		<module>messenger</module>
-        <module>main-router</module>
     </modules>
 
 	<properties>
@@ -34,7 +33,7 @@
 
 			<dependency>
 				<groupId>com.softgroup</groupId>
-				<artifactId>common-router</artifactId>
+				<artifactId>router-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
@@ -54,7 +53,8 @@
 
 		<dependency>
 			<groupId>com.softgroup</groupId>
-			<artifactId>common-router</artifactId>
+			<artifactId>router-api</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 
