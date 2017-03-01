@@ -11,12 +11,4 @@
 
     <artifactId>router-impl</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.softgroup</groupId>
-            <artifactId>router-api</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-    </dependencies>
-
 </project>
