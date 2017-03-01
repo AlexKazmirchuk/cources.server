@@ -17,21 +17,6 @@
             <artifactId>router-api</artifactId>
             <version>0.0.1</version>
         </dependency>
-        <dependency>
-            <groupId>com.softgroup</groupId>
-            <artifactId>authorization-impl</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.softgroup</groupId>
-            <artifactId>profile-impl</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.softgroup</groupId>
-            <artifactId>messenger-impl</artifactId>
-            <version>0.0.1</version>
-        </dependency>
     </dependencies>
 
 </project>
