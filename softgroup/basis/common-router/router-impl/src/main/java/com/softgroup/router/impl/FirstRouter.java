@@ -1,4 +1,4 @@
-package com.softgroup.first.router;
+package com.softgroup.router.impl;
 
 import com.softgroup.common.router.api.AbstractRouterHandler;
 import com.softgroup.common.router.api.CommonRouterHandler;
