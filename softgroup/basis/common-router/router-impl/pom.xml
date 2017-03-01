@@ -11,4 +11,11 @@
 
     <artifactId>router-impl</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.softgroup</groupId>
+            <artifactId>router-api</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
