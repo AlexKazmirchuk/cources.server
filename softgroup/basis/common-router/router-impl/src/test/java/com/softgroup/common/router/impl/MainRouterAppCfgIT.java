@@ -1,6 +1,6 @@
-package com.softgroup.router.impl;
+package com.softgroup.common.router.impl;
 
-import com.softgroup.router.impl.configuration.FirstRouterAppCfg;
+import com.softgroup.common.router.impl.configuration.FirstRouterAppCfg;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
