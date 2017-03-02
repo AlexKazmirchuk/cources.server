@@ -12,6 +12,8 @@ public interface DataMapper {
 
 	Map<String, Object> convertToMap(Object value);
 
+	<T> T convert(Object objectData, Class<T> dataType);
+
 	<T> T convert(Map<String, Object> map, Class<T> dataType);
 
 	<T> T convert(Map<String, Object> map, TypeReference<?> dataType);
