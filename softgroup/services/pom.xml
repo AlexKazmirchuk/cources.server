@@ -15,7 +15,7 @@
 		<module>profile</module>
 		<module>authorization</module>
 		<module>messenger</module>
-	</modules>
+    </modules>
 
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -33,7 +33,7 @@
 
 			<dependency>
 				<groupId>com.softgroup</groupId>
-				<artifactId>common-router</artifactId>
+				<artifactId>router-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
@@ -53,7 +53,8 @@
 
 		<dependency>
 			<groupId>com.softgroup</groupId>
-			<artifactId>common-router</artifactId>
+			<artifactId>router-api</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 
