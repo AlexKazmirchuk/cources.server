@@ -1,6 +1,9 @@
-package com.softgroup.common.router.impl;
+package com.softgroup.common.router.impl.test;
 
+import com.softgroup.common.datamapper.configuration.DataMapperAppCfg;
+import com.softgroup.common.router.impl.FirstRouter;
 import com.softgroup.common.router.impl.configuration.FirstRouterAppCfg;
+import com.softgroup.common.router.impl.test.configuration.RouterImplAppCfgTest;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,8 +20,10 @@ import static org.junit.Assert.assertThat;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {FirstRouterAppCfg.class})
-public class MainRouterAppCfgIT {
+@ContextConfiguration(classes = {FirstRouterAppCfg.class,
+                                 RouterImplAppCfgTest.class,
+                                 DataMapperAppCfg.class})
+public class FirstRouterAppCfgIT {
 
     @Autowired
     private FirstRouter firstRouter;
