@@ -198,4 +198,17 @@ public class FirstRouterAppCfgIT {
         assertEquals(expectedStatusCode, status.getCode());
         assertEquals(expectedStatusMessage, status.getMessage());
     }
+
+    @Test
+    @Ignore
+    public void testHandleMethodWithNull(){
+        Integer expectedStatusCode = 422;
+        String expectedStatusMessage = "Unprocessable Entity";
+
+        Response<?> response = firstRouter.handle(null);
+        ResponseStatus status = response.getStatus();
+
+        assertEquals(expectedStatusCode, status.getCode());
+        assertEquals(expectedStatusMessage, status.getMessage());
+    }
 }
