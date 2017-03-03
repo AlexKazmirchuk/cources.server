@@ -4,12 +4,14 @@ import com.softgroup.common.datamapper.configuration.DataMapperAppCfg;
 import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.impl.FirstRouter;
 import com.softgroup.common.router.impl.configuration.FirstRouterAppCfg;
 import com.softgroup.common.router.impl.test.configuration.RouterImplAppCfgTest;
 import com.softgroup.common.router.impl.test.message.TestResponse;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,8 @@ public class FirstRouterAppCfgIT {
     private Request<LinkedHashMap<String,String>> secondRequest;
     private Request<LinkedHashMap<String,String>> thirdRequest;
     private Request<LinkedHashMap<String,String>> forthRequest;
+    private Request<LinkedHashMap<String,String>> requestWithWrongType;
+    private Request<LinkedHashMap<String,String>> requestWithWrongCommand;
 
     @Before
     public void initRequests(){
@@ -94,6 +98,33 @@ public class FirstRouterAppCfgIT {
         forthRequest = new Request<>();
         forthRequest.setHeader(forthHeader);
         forthRequest.setData(forthMap);
+
+        ActionHeader headerWithWrongType = new ActionHeader();
+        headerWithWrongType.setUuid("3434-45-65-65657");
+        headerWithWrongType.setVersion("0.1");
+        headerWithWrongType.setCommand("first_test_request_handler");
+        headerWithWrongType.setType("wrong_type");
+
+        LinkedHashMap<String,String> someData = new LinkedHashMap<>();
+        someData.put("request_value", "some info");
+
+        requestWithWrongType = new Request<>();
+        requestWithWrongType.setHeader(headerWithWrongType);
+        requestWithWrongType.setData(someData);
+
+        ActionHeader headerWithWrongCommand = new ActionHeader();
+        headerWithWrongCommand.setUuid("3434-45-65-65657");
+        headerWithWrongCommand.setVersion("0.1");
+        headerWithWrongCommand.setCommand("wrong_command");
+        headerWithWrongCommand.setType("first_type");
+
+        LinkedHashMap<String,String> data = new LinkedHashMap<>();
+        data.put("request_value", "info");
+
+        requestWithWrongCommand = new Request<>();
+        requestWithWrongCommand.setHeader(headerWithWrongCommand);
+        requestWithWrongCommand.setData(data);
+
     }
 
     @Test
@@ -140,5 +171,31 @@ public class FirstRouterAppCfgIT {
         TestResponse responseData = (TestResponse) response.getData();
 
         assertEquals(expectedResult, responseData.getResponseValue());
+    }
+
+    @Test
+    @Ignore
+    public void testRequestWithWrongType(){
+        Integer expectedStatusCode = 422;
+        String expectedStatusMessage = "Unprocessable Entity";
+
+        Response<?> response = firstRouter.handle(requestWithWrongType);
+        ResponseStatus status = response.getStatus();
+
+        assertEquals(expectedStatusCode, status.getCode());
+        assertEquals(expectedStatusMessage, status.getMessage());
+    }
+
+    @Test
+    @Ignore
+    public void testRequestWithWrongCommand(){
+        Integer expectedStatusCode = 422;
+        String expectedStatusMessage = "Unprocessable Entity";
+
+        Response<?> response = firstRouter.handle(requestWithWrongCommand);
+        ResponseStatus status = response.getStatus();
+
+        assertEquals(expectedStatusCode, status.getCode());
+        assertEquals(expectedStatusMessage, status.getMessage());
     }
 }
