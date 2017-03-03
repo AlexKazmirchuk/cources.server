@@ -15,6 +15,6 @@ public class SecondTestCommandRouter extends AbstractRouterHandler<SecondMarkerI
         implements CommonRouterHandler {
     @Override
     public String getName() {
-        return "second_command";
+        return "second_type";
     }
 }

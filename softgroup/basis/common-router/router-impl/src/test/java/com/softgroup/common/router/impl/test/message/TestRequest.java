@@ -10,4 +10,15 @@ import com.softgroup.common.protocol.RequestData;
 public class TestRequest implements RequestData {
 
     private static final long serialVersionUID = 7401702463384437639L;
+
+    private String requestValue;
+
+    public String getRequestValue() {
+        return requestValue;
+    }
+
+    public void setRequestValue(String requestValue) {
+        this.requestValue = requestValue;
+    }
+
 }

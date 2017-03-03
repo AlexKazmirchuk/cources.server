@@ -16,6 +16,6 @@ public class FirstTestCommandRouter extends AbstractRouterHandler<FirstMarkerI>
 
     @Override
     public String getName() {
-        return "first_command";
+        return "first_type";
     }
 }
