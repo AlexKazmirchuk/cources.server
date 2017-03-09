@@ -19,9 +19,6 @@ public class ProfileSettingsEntity implements Serializable {
     @Column(name = "settings_data")
     private String settingsData;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private ProfileEntity profile;
-
     public String getId() {
         return id;
     }
@@ -36,14 +33,6 @@ public class ProfileSettingsEntity implements Serializable {
 
     public void setSettingsData(String settingsData) {
         this.settingsData = settingsData;
-    }
-
-    public ProfileEntity getProfile() {
-        return profile;
-    }
-
-    public void setProfile(ProfileEntity profile) {
-        this.profile = profile;
     }
 
     @Override

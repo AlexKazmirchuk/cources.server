@@ -36,8 +36,8 @@ public class ProfileEntity implements Serializable{
 	@Column(name = "avatar_uri")
     private String avatarUri;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "profile")
-	private List<ProfileSettingsEntity> settingsEntities;
+    @OneToOne(fetch = FetchType.EAGER)
+	private ProfileSettingsEntity settingsEntity;
 
     public String getId() {
         return id;
@@ -95,12 +95,12 @@ public class ProfileEntity implements Serializable{
         this.avatarUri = avatarUri;
     }
 
-    public List<ProfileSettingsEntity> getSettingsEntities() {
-        return settingsEntities;
+    public ProfileSettingsEntity getSettingsEntity() {
+        return settingsEntity;
     }
 
-    public void setSettingsEntities(List<ProfileSettingsEntity> settingsEntities) {
-        this.settingsEntities = settingsEntities;
+    public void setSettingsEntity(ProfileSettingsEntity settingsEntity) {
+        this.settingsEntity = settingsEntity;
     }
 
     @Override
