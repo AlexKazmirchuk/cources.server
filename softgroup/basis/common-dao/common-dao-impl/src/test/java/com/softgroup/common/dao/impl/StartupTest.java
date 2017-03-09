@@ -36,32 +36,5 @@ public class StartupTest {
 
         profileEntity = profileRepository.save(profileEntity);
 
-//        ProfileSettingsEntity settingsEntity = new ProfileSettingsEntity();
-//        settingsEntity.setId("1");
-//        settingsEntity.setSettingsData("data_1");
-//        settingsEntity.setProfile(profileEntity);
-//
-//        ProfileSettingsEntity settingsEntity1 = new ProfileSettingsEntity();
-//        settingsEntity1.setId("2");
-//        settingsEntity1.setSettingsData("data_2");
-//        settingsEntity1.setProfile(profileEntity);
-//
-//
-//
-//        settingsEntity = profileSettingsRepository.save(settingsEntity);
-//        settingsEntity1 = profileSettingsRepository.save(settingsEntity1);
-//
-//        profileEntity.setSettingsEntities(Arrays.asList(settingsEntity, settingsEntity1));
-//
-//        profileEntity = profileRepository.save(profileEntity);
-//
-//        ProfileEntity profile = profileRepository.findOne("id");
-//
-//        List<ProfileSettingsEntity> settings = profile.getSettingsEntities();
-//
-//        List<ProfileEntity> profileEntities = profileRepository.findByName("name_2");
-//
-//        List<ProfileEntity> profileEntitiesByQuery = profileRepository.findByNameQuery("name_2");
-
     }
 }
