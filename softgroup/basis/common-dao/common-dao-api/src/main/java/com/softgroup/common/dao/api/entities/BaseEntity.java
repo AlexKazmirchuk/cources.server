@@ -8,8 +8,7 @@ import java.io.Serializable;
  * @since 09.03.17.
  */
 
-@Entity
-@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 public abstract class BaseEntity implements Serializable{
 
     private static final long serialVersionUID = 3003581931598837562L;
