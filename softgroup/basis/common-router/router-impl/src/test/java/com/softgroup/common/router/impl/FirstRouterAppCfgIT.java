@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {FirstRouterAppCfg.class})
-public class MainRouterAppCfgIT {
+public class FirstRouterAppCfgIT {
 
     @Autowired
     private FirstRouter firstRouter;
