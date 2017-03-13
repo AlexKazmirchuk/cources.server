@@ -33,6 +33,54 @@
 
 			<dependency>
 				<groupId>com.softgroup</groupId>
+				<artifactId>authorization-impl</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.softgroup</groupId>
+				<artifactId>messenger-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.softgroup</groupId>
+				<artifactId>messenger-impl</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.softgroup</groupId>
+				<artifactId>profile-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.softgroup</groupId>
+				<artifactId>profile-impl</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.softgroup</groupId>
+				<artifactId>router-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.softgroup</groupId>
+				<artifactId>router-impl</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.softgroup</groupId>
+				<artifactId>common-dao-impl</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.softgroup</groupId>
 				<artifactId>common-datamapper</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -206,6 +254,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
