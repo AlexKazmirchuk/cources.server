@@ -24,8 +24,6 @@ public class TokenServiceImpl implements TokenService {
     private static final String DEVICE_ID = "device_id";
 
     private static final String TYPE = "type";
-    private static final String TYPE_SESSION = "session_token";
-    private static final String TYPE_DEVICE = "device_token";
 
 
     @Override
