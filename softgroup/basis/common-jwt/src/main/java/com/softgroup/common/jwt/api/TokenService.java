@@ -27,5 +27,5 @@ public interface TokenService {
 
     Long getExpirationTime(String token);
 
-    String getTokenType(String token);
+    TokenType getTokenType(String token);
 }

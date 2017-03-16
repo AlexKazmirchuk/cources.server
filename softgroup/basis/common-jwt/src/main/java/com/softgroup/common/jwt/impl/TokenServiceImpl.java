@@ -1,6 +1,7 @@
 package com.softgroup.common.jwt.impl;
 
 import com.softgroup.common.jwt.api.TokenService;
+import com.softgroup.common.jwt.api.TokenType;
 import io.jsonwebtoken.*;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,7 @@ public class TokenServiceImpl implements TokenService {
             SignatureException
     {
         Jwts.parser()
-                .require(TYPE,TYPE_SESSION)
+                .require(TYPE, TokenType.SESSION_TOKEN)
                 .setSigningKey(SIGN_KEY)
                 .parseClaimsJws(sessionToken);
     }
@@ -46,7 +47,7 @@ public class TokenServiceImpl implements TokenService {
             SignatureException
     {
         Jwts.parser()
-                .require(TYPE,TYPE_DEVICE)
+                .require(TYPE,TokenType.DEVICE_TOKEN)
                 .setSigningKey(SIGN_KEY)
                 .parseClaimsJws(deviceToken);
     }
@@ -56,7 +57,7 @@ public class TokenServiceImpl implements TokenService {
         return  Jwts.builder()
                 .claim(PROFILE_ID, profileID)
                 .claim(DEVICE_ID, deviceID)
-                .claim(TYPE, TYPE_SESSION)
+                .claim(TYPE, TokenType.SESSION_TOKEN)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + EXP_15_MINUTES))
                 .signWith(SignatureAlgorithm.HS512, SIGN_KEY)
@@ -68,7 +69,7 @@ public class TokenServiceImpl implements TokenService {
         return Jwts.builder()
                 .claim(PROFILE_ID, profileID)
                 .claim(DEVICE_ID, deviceID)
-                .claim(TYPE, TYPE_DEVICE)
+                .claim(TYPE, TokenType.DEVICE_TOKEN)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + EXP_YEAR))
                 .signWith(SignatureAlgorithm.HS512, SIGN_KEY)
@@ -110,7 +111,13 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public String getTokenType(String token) {
-        return (String) getClaimValueByName(token, TYPE);
+    public TokenType getTokenType(String token) {
+        String result = (String) getClaimValueByName(token, TYPE);
+
+        if (result.equals(TokenType.DEVICE_TOKEN.toString())){
+            return TokenType.DEVICE_TOKEN;
+        } else {
+            return TokenType.SESSION_TOKEN;
+        }
     }
 }
