@@ -33,7 +33,10 @@ public class TokenServiceImpl implements TokenService {
             MalformedJwtException,
             SignatureException
     {
-        Jwts.parser().setSigningKey(SIGN_KEY).parseClaimsJws(sessionToken);
+        Jwts.parser()
+                .require(TYPE,TYPE_SESSION)
+                .setSigningKey(SIGN_KEY)
+                .parseClaimsJws(sessionToken);
     }
 
     @Override
@@ -42,7 +45,10 @@ public class TokenServiceImpl implements TokenService {
             MalformedJwtException,
             SignatureException
     {
-        Jwts.parser().setSigningKey(SIGN_KEY).parseClaimsJws(deviceToken);
+        Jwts.parser()
+                .require(TYPE,TYPE_DEVICE)
+                .setSigningKey(SIGN_KEY)
+                .parseClaimsJws(deviceToken);
     }
 
     @Override
