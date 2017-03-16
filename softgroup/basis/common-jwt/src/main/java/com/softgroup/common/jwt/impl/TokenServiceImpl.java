@@ -35,7 +35,7 @@ public class TokenServiceImpl implements TokenService {
             SignatureException
     {
         Jwts.parser()
-                .require(TYPE, TokenType.SESSION_TOKEN)
+                .require(TYPE, TokenType.SESSION_TOKEN.toString())
                 .setSigningKey(SIGN_KEY)
                 .parseClaimsJws(sessionToken);
     }
@@ -47,7 +47,7 @@ public class TokenServiceImpl implements TokenService {
             SignatureException
     {
         Jwts.parser()
-                .require(TYPE,TokenType.DEVICE_TOKEN)
+                .require(TYPE,TokenType.DEVICE_TOKEN.toString())
                 .setSigningKey(SIGN_KEY)
                 .parseClaimsJws(deviceToken);
     }
