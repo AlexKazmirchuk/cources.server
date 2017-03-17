@@ -2,6 +2,7 @@ package com.softgroup.common.jwt.impl;
 
 import com.softgroup.common.jwt.api.TokenService;
 import com.softgroup.common.jwt.api.TokenType;
+import com.softgroup.common.jwt.exceptions.InvalidTokenException;
 import io.jsonwebtoken.*;
 import org.springframework.stereotype.Service;
 
@@ -27,27 +28,27 @@ public class TokenServiceImpl implements TokenService {
 
 
     @Override
-    public void validateSessionToken(String sessionToken) throws
-            ExpiredJwtException,
-            MalformedJwtException,
-            SignatureException
-    {
-        Jwts.parser()
-                .require(TYPE, TokenType.SESSION_TOKEN.toString())
-                .setSigningKey(SIGN_KEY)
-                .parseClaimsJws(sessionToken);
+    public void validateSessionToken(String sessionToken) throws InvalidTokenException {
+        try{
+            Jwts.parser()
+                    .require(TYPE, TokenType.SESSION_TOKEN.toString())
+                    .setSigningKey(SIGN_KEY)
+                    .parseClaimsJws(sessionToken);
+        } catch (Exception ex){
+            throw new InvalidTokenException(ex.getMessage());
+        }
     }
 
     @Override
-    public void validateDeviceToken(String deviceToken) throws
-            ExpiredJwtException,
-            MalformedJwtException,
-            SignatureException
-    {
-        Jwts.parser()
-                .require(TYPE,TokenType.DEVICE_TOKEN.toString())
-                .setSigningKey(SIGN_KEY)
-                .parseClaimsJws(deviceToken);
+    public void validateDeviceToken(String deviceToken) throws InvalidTokenException {
+        try {
+            Jwts.parser()
+                    .require(TYPE,TokenType.DEVICE_TOKEN.toString())
+                    .setSigningKey(SIGN_KEY)
+                    .parseClaimsJws(deviceToken);
+        } catch (Exception ex){
+            throw new InvalidTokenException(ex.getMessage());
+        }
     }
 
     @Override
@@ -83,39 +84,60 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public String getProfileID(String token) {
-        return (String) getClaimValueByName(token, PROFILE_ID);
+    public String getProfileID(String token) throws InvalidTokenException {
+        try {
+            return (String) getClaimValueByName(token, PROFILE_ID);
+        } catch (Exception ex){
+            throw new InvalidTokenException(ex.getMessage());
+        }
     }
 
     @Override
-    public String getDeviceID(String token) {
-        return (String) getClaimValueByName(token, DEVICE_ID);
+    public String getDeviceID(String token) throws InvalidTokenException {
+        try {
+            return (String) getClaimValueByName(token, DEVICE_ID);
+        } catch (Exception ex){
+            throw new InvalidTokenException(ex.getMessage());
+        }
     }
 
     @Override
-    public Long getCreationTime(String token) {
-        return Jwts.parser()
-                .setSigningKey(SIGN_KEY)
-                .parseClaimsJws(token)
-                .getBody().getIssuedAt().getTime();
+    public Long getCreationTime(String token) throws InvalidTokenException {
+        try {
+            return Jwts.parser()
+                    .setSigningKey(SIGN_KEY)
+                    .parseClaimsJws(token)
+                    .getBody().getIssuedAt().getTime();
+        } catch (Exception ex){
+            throw new InvalidTokenException(ex.getMessage());
+        }
     }
 
     @Override
-    public Long getExpirationTime(String token) {
-        return Jwts.parser()
-                .setSigningKey(SIGN_KEY)
-                .parseClaimsJws(token)
-                .getBody().getExpiration().getTime();
+    public Long getExpirationTime(String token) throws InvalidTokenException {
+        try {
+            return Jwts.parser()
+                    .setSigningKey(SIGN_KEY)
+                    .parseClaimsJws(token)
+                    .getBody().getExpiration().getTime();
+        } catch (Exception ex){
+            throw new InvalidTokenException(ex.getMessage());
+        }
     }
 
     @Override
-    public TokenType getTokenType(String token) {
-        String result = (String) getClaimValueByName(token, TYPE);
-
-        if (result.equals(TokenType.DEVICE_TOKEN.toString())){
-            return TokenType.DEVICE_TOKEN;
-        } else {
-            return TokenType.SESSION_TOKEN;
+    public TokenType getTokenType(String token) throws InvalidTokenException {
+        try {
+            String result = (String) getClaimValueByName(token, TYPE);
+            if (result.equals(TokenType.DEVICE_TOKEN.toString())){
+                return TokenType.DEVICE_TOKEN;
+            } else if (result.equals(TokenType.SESSION_TOKEN.toString())){
+                return TokenType.SESSION_TOKEN;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception ex){
+            throw new InvalidTokenException(ex.getMessage());
         }
     }
 }

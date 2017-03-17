@@ -2,9 +2,8 @@ package com.softgroup.common.jwt;
 
 import com.softgroup.common.jwt.api.TokenService;
 import com.softgroup.common.jwt.api.TokenType;
+import com.softgroup.common.jwt.exceptions.InvalidTokenException;
 import com.softgroup.common.jwt.impl.TokenServiceImpl;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -49,47 +48,47 @@ public class TokenServiceTest {
     }
 
     @Test
-    public void validateDeviceTokenMethodTest(){
+    public void validateDeviceTokenMethodTest() throws InvalidTokenException {
         tokenService.validateDeviceToken(deviceToken);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void validateDeviceTokenMethodWithNullParameterTest(){
+    @Test(expected = InvalidTokenException.class)
+    public void validateDeviceTokenMethodWithNullParameterTest() throws InvalidTokenException {
         tokenService.validateDeviceToken(null);
     }
 
-    @Test(expected = MalformedJwtException.class)
-    public void validateDeviceTokenMethodWithIncorrectParameterTest(){
+    @Test(expected = InvalidTokenException.class)
+    public void validateDeviceTokenMethodWithIncorrectParameterTest() throws InvalidTokenException {
         tokenService.validateDeviceToken("ssssswwwwwww.dsd.sdsd");
     }
 
-    @Test(expected = SignatureException.class)
-    public void validateDeviceTokenMethodWithIncorrectTokenTest(){
+    @Test(expected = InvalidTokenException.class)
+    public void validateDeviceTokenMethodWithIncorrectTokenTest() throws InvalidTokenException {
         tokenService.validateDeviceToken(deviceToken + "R");
     }
 
     @Test
-    public void validateSessionTokenMethodTest(){
+    public void validateSessionTokenMethodTest() throws InvalidTokenException {
         tokenService.validateSessionToken(sessionToken);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void validateSessionTokenMethodWithNullParameterTest(){
+    @Test(expected = InvalidTokenException.class)
+    public void validateSessionTokenMethodWithNullParameterTest() throws InvalidTokenException {
         tokenService.validateSessionToken(null);
     }
 
-    @Test(expected = MalformedJwtException.class)
-    public void validateSessionTokenMethodWithIncorrectParameterTest(){
+    @Test(expected = InvalidTokenException.class)
+    public void validateSessionTokenMethodWithIncorrectParameterTest() throws InvalidTokenException {
         tokenService.validateSessionToken("fdf.dsd.sdsd");
     }
 
-    @Test(expected = SignatureException.class)
-    public void validateSessionTokenMethodWithIncorrectTokenTest(){
+    @Test(expected = InvalidTokenException.class)
+    public void validateSessionTokenMethodWithIncorrectTokenTest() throws InvalidTokenException {
         tokenService.validateSessionToken(sessionToken + "KjOp");
     }
 
     @Test
-    public void getProfileIDMethodTest(){
+    public void getProfileIDMethodTest() throws InvalidTokenException {
         assertThat(tokenService.getProfileID(deviceToken), notNullValue());
         assertThat(tokenService.getProfileID(sessionToken), notNullValue());
         assertThat(tokenService.getProfileID(deviceToken), is("test_user_id1"));
@@ -97,7 +96,7 @@ public class TokenServiceTest {
     }
 
     @Test
-    public void getDeviceIDMethodTest(){
+    public void getDeviceIDMethodTest() throws InvalidTokenException {
         assertThat(tokenService.getDeviceID(deviceToken), notNullValue());
         assertThat(tokenService.getDeviceID(sessionToken), notNullValue());
         assertThat(tokenService.getDeviceID(deviceToken), is("test_user_device_id1"));
@@ -105,7 +104,7 @@ public class TokenServiceTest {
     }
 
     @Test
-    public void getCreationTimeMethodTest(){
+    public void getCreationTimeMethodTest() throws InvalidTokenException {
         assertThat(tokenService.getCreationTime(deviceToken), notNullValue());
         assertThat(tokenService.getCreationTime(sessionToken), notNullValue());
         assertThat(tokenService.getCreationTime(deviceToken), greaterThan(System.currentTimeMillis()-1000));
@@ -115,7 +114,7 @@ public class TokenServiceTest {
     }
 
     @Test
-    public void getExpirationTimeMethodTest(){
+    public void getExpirationTimeMethodTest() throws InvalidTokenException {
         assertThat(tokenService.getExpirationTime(deviceToken), notNullValue());
         assertThat(tokenService.getExpirationTime(sessionToken), notNullValue());
         assertThat(tokenService.getExpirationTime(deviceToken), greaterThan(System.currentTimeMillis()-1000 + 31536000000L)); //year
@@ -125,7 +124,7 @@ public class TokenServiceTest {
     }
 
     @Test
-    public void getTokenTypeMethodTest(){
+    public void getTokenTypeMethodTest() throws InvalidTokenException {
         assertThat(tokenService.getTokenType(deviceToken), notNullValue());
         assertThat(tokenService.getTokenType(sessionToken), notNullValue());
         assertThat(tokenService.getTokenType(deviceToken), is(TokenType.DEVICE_TOKEN));

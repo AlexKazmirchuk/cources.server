@@ -1,8 +1,6 @@
 package com.softgroup.common.jwt.api;
 
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureException;
+import com.softgroup.common.jwt.exceptions.InvalidTokenException;
 
 /**
  * @author AlexKazmirchuk
@@ -11,21 +9,21 @@ import io.jsonwebtoken.SignatureException;
 
 public interface TokenService {
 
-    void validateSessionToken(String sessionToken) throws ExpiredJwtException, MalformedJwtException, SignatureException;
+    void validateSessionToken(String sessionToken) throws InvalidTokenException;
 
-    void validateDeviceToken(String deviceToken) throws ExpiredJwtException, MalformedJwtException, SignatureException;
+    void validateDeviceToken(String deviceToken) throws InvalidTokenException;
 
     String createSessionToken(String profileID, String deviceID);
 
     String createDeviceToken(String profileID, String deviceID);
 
-    String getProfileID(String token);
+    String getProfileID(String token) throws InvalidTokenException;
 
-    String getDeviceID(String token);
+    String getDeviceID(String token) throws InvalidTokenException;
 
-    Long getCreationTime(String token);
+    Long getCreationTime(String token) throws InvalidTokenException;
 
-    Long getExpirationTime(String token);
+    Long getExpirationTime(String token) throws InvalidTokenException;
 
-    TokenType getTokenType(String token);
+    TokenType getTokenType(String token) throws InvalidTokenException;
 }
