@@ -1,5 +1,6 @@
 package com.softgroup.common.dao.api.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -14,9 +15,72 @@ public class ConversationEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -8700529675793334330L;
 
-    //todo add other fields later
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "logo_image_uri")
+    private String logoImageUri;
+
+    @Column(name = "type")
+    private Integer type;
+
+    @Column(name = "last_message_index")
+    private Long lastMessageIndex;
 
     public ConversationEntity() {
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLogoImageUri() {
+        return logoImageUri;
+    }
+
+    public void setLogoImageUri(String logoImageUri) {
+        this.logoImageUri = logoImageUri;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Long getLastMessageIndex() {
+        return lastMessageIndex;
+    }
+
+    public void setLastMessageIndex(Long lastMessageIndex) {
+        this.lastMessageIndex = lastMessageIndex;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ConversationEntity)) return false;
+
+        ConversationEntity that = (ConversationEntity) o;
+
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (logoImageUri != null ? !logoImageUri.equals(that.logoImageUri) : that.logoImageUri != null) return false;
+        if (type != null ? !type.equals(that.type) : that.type != null) return false;
+        return lastMessageIndex != null ? lastMessageIndex.equals(that.lastMessageIndex) : that.lastMessageIndex == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (logoImageUri != null ? logoImageUri.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (lastMessageIndex != null ? lastMessageIndex.hashCode() : 0);
+        return result;
+    }
 }
