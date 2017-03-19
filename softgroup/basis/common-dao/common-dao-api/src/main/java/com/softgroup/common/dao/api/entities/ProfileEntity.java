@@ -32,7 +32,7 @@ public class ProfileEntity extends BaseEntity implements Serializable{
     private String avatarUri;
 
     @OneToOne(fetch = FetchType.EAGER)
-	private ProfileSettingsEntity settingsEntity;
+	private ProfileSettingsEntity settings;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DeviceEntity> devices;
@@ -85,12 +85,12 @@ public class ProfileEntity extends BaseEntity implements Serializable{
         this.avatarUri = avatarUri;
     }
 
-    public ProfileSettingsEntity getSettingsEntity() {
-        return settingsEntity;
+    public ProfileSettingsEntity getSettings() {
+        return settings;
     }
 
-    public void setSettingsEntity(ProfileSettingsEntity settingsEntity) {
-        this.settingsEntity = settingsEntity;
+    public void setSettings(ProfileSettingsEntity settings) {
+        this.settings = settings;
     }
 
     public Set<DeviceEntity> getDevices() {
