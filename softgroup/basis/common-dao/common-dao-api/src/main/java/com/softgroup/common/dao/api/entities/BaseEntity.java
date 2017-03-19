@@ -1,5 +1,7 @@
 package com.softgroup.common.dao.api.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,7 +16,8 @@ public abstract class BaseEntity implements Serializable{
     private static final long serialVersionUID = 3003581931598837562L;
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
     public String getId() {
