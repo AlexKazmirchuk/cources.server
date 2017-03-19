@@ -20,7 +20,7 @@ public class ConversationSettingsEntity extends BaseEntity implements Serializab
     private String name;
 
     @Column(name = "admin_id")
-    private String adminID; // or ProfileEntity admin?
+    private ProfileEntity admin;
 
     @Column(name = "logo_image_uri")
     private String logoImageUri;
@@ -36,12 +36,12 @@ public class ConversationSettingsEntity extends BaseEntity implements Serializab
         this.name = name;
     }
 
-    public String getAdminID() {
-        return adminID;
+    public ProfileEntity getAdmin() {
+        return admin;
     }
 
-    public void setAdminID(String adminID) {
-        this.adminID = adminID;
+    public void setAdmin(ProfileEntity admin) {
+        this.admin = admin;
     }
 
     public String getLogoImageUri() {
@@ -60,14 +60,14 @@ public class ConversationSettingsEntity extends BaseEntity implements Serializab
         ConversationSettingsEntity that = (ConversationSettingsEntity) o;
 
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (adminID != null ? !adminID.equals(that.adminID) : that.adminID != null) return false;
+        if (admin != null ? !admin.equals(that.admin) : that.admin != null) return false;
         return logoImageUri != null ? logoImageUri.equals(that.logoImageUri) : that.logoImageUri == null;
     }
 
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (adminID != null ? adminID.hashCode() : 0);
+        result = 31 * result + (admin != null ? admin.hashCode() : 0);
         result = 31 * result + (logoImageUri != null ? logoImageUri.hashCode() : 0);
         return result;
     }
