@@ -2,6 +2,7 @@ package com.softgroup.common.dao.api.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * Created by Odin on 29.02.2016.
@@ -32,6 +33,9 @@ public class ProfileEntity extends BaseEntity implements Serializable{
 
     @OneToOne(fetch = FetchType.EAGER)
 	private ProfileSettingsEntity settingsEntity;
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<DeviceEntity> devices;
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -87,6 +91,14 @@ public class ProfileEntity extends BaseEntity implements Serializable{
 
     public void setSettingsEntity(ProfileSettingsEntity settingsEntity) {
         this.settingsEntity = settingsEntity;
+    }
+
+    public Set<DeviceEntity> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(Set<DeviceEntity> devices) {
+        this.devices = devices;
     }
 
     @Override
