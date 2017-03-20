@@ -16,7 +16,10 @@
 			<groupId>com.softgroup</groupId>
 			<artifactId>authorization-api</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.softgroup</groupId>
+			<artifactId>common-cache</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
