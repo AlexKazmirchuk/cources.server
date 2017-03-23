@@ -14,19 +14,28 @@ public class DeviceEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -506229924089552354L;
 
-    @Column(name = "last_confirmation_data")
-    private Long lastConfirmationData;
+    @Column(name = "last_confirmation_date")
+    private Long lastConfirmationDate;
 
     @ManyToOne
     @JoinColumn(name = "profile_id")
     private ProfileEntity profile;
 
-    public Long getLastConfirmationData() {
-        return lastConfirmationData;
+    @Column(name = "device_id")
+    private String deviceID;
+
+    @Column(name = "locale")
+    private String locale;
+
+    public DeviceEntity() {
     }
 
-    public void setLastConfirmationData(Long lastConfirmationData) {
-        this.lastConfirmationData = lastConfirmationData;
+    public Long getLastConfirmationDate() {
+        return lastConfirmationDate;
+    }
+
+    public void setLastConfirmationDate(Long lastConfirmationDate) {
+        this.lastConfirmationDate = lastConfirmationDate;
     }
 
     public ProfileEntity getProfile() {
@@ -37,6 +46,22 @@ public class DeviceEntity extends BaseEntity implements Serializable {
         this.profile = profile;
     }
 
+    public String getDeviceID() {
+        return deviceID;
+    }
+
+    public void setDeviceID(String deviceID) {
+        this.deviceID = deviceID;
+    }
+
+    public String getLocale() {
+        return locale;
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,15 +69,19 @@ public class DeviceEntity extends BaseEntity implements Serializable {
 
         DeviceEntity that = (DeviceEntity) o;
 
-        if (lastConfirmationData != null ? !lastConfirmationData.equals(that.lastConfirmationData) : that.lastConfirmationData != null)
+        if (lastConfirmationDate != null ? !lastConfirmationDate.equals(that.lastConfirmationDate) : that.lastConfirmationDate != null)
             return false;
-        return profile != null ? profile.equals(that.profile) : that.profile == null;
+        if (profile != null ? !profile.equals(that.profile) : that.profile != null) return false;
+        if (deviceID != null ? !deviceID.equals(that.deviceID) : that.deviceID != null) return false;
+        return locale != null ? locale.equals(that.locale) : that.locale == null;
     }
 
     @Override
     public int hashCode() {
-        int result = lastConfirmationData != null ? lastConfirmationData.hashCode() : 0;
+        int result = lastConfirmationDate != null ? lastConfirmationDate.hashCode() : 0;
         result = 31 * result + (profile != null ? profile.hashCode() : 0);
+        result = 31 * result + (deviceID != null ? deviceID.hashCode() : 0);
+        result = 31 * result + (locale != null ? locale.hashCode() : 0);
         return result;
     }
 }
