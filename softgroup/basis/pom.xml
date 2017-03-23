@@ -16,6 +16,7 @@
         <module>common-protocol</module>
         <module>common-dao</module>
         <module>common-cache</module>
+        <module>common-jwt</module>
     </modules>
 
     <dependencies>
