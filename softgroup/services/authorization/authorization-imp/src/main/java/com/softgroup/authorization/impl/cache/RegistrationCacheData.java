@@ -11,7 +11,6 @@ public class RegistrationCacheData implements Serializable {
 
     private static final long serialVersionUID = -7589939630840486542L;
 
-    private String registrationRequestUuid;
     private Integer registrationTimeoutSec;
     private Integer authCode;
     private String deviceID;
@@ -21,13 +20,11 @@ public class RegistrationCacheData implements Serializable {
     public RegistrationCacheData() {
     }
 
-    public RegistrationCacheData(String registrationRequestUuid,
-                                 Integer registrationTimeoutSec,
+    public RegistrationCacheData(Integer registrationTimeoutSec,
                                  Integer authCode,
                                  String deviceID,
                                  String phoneNumber,
                                  String locale) {
-        this.registrationRequestUuid = registrationRequestUuid;
         this.registrationTimeoutSec = registrationTimeoutSec;
         this.authCode = authCode;
         this.deviceID = deviceID;
@@ -59,14 +56,6 @@ public class RegistrationCacheData implements Serializable {
         this.deviceID = deviceID;
     }
 
-    public String getRegistrationRequestUuid() {
-        return registrationRequestUuid;
-    }
-
-    public void setRegistrationRequestUuid(String registrationRequestUuid) {
-        this.registrationRequestUuid = registrationRequestUuid;
-    }
-
     public Integer getRegistrationTimeoutSec() {
         return registrationTimeoutSec;
     }
@@ -88,23 +77,19 @@ public class RegistrationCacheData implements Serializable {
         if (this == o) return true;
         if (!(o instanceof RegistrationCacheData)) return false;
 
-        RegistrationCacheData cacheData = (RegistrationCacheData) o;
+        RegistrationCacheData that = (RegistrationCacheData) o;
 
-        if (registrationRequestUuid != null ? !registrationRequestUuid.equals(cacheData.registrationRequestUuid) : cacheData.registrationRequestUuid != null)
+        if (registrationTimeoutSec != null ? !registrationTimeoutSec.equals(that.registrationTimeoutSec) : that.registrationTimeoutSec != null)
             return false;
-        if (registrationTimeoutSec != null ? !registrationTimeoutSec.equals(cacheData.registrationTimeoutSec) : cacheData.registrationTimeoutSec != null)
-            return false;
-        if (authCode != null ? !authCode.equals(cacheData.authCode) : cacheData.authCode != null) return false;
-        if (deviceID != null ? !deviceID.equals(cacheData.deviceID) : cacheData.deviceID != null) return false;
-        if (phoneNumber != null ? !phoneNumber.equals(cacheData.phoneNumber) : cacheData.phoneNumber != null)
-            return false;
-        return locale != null ? locale.equals(cacheData.locale) : cacheData.locale == null;
+        if (authCode != null ? !authCode.equals(that.authCode) : that.authCode != null) return false;
+        if (deviceID != null ? !deviceID.equals(that.deviceID) : that.deviceID != null) return false;
+        if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
+        return locale != null ? locale.equals(that.locale) : that.locale == null;
     }
 
     @Override
     public int hashCode() {
-        int result = registrationRequestUuid != null ? registrationRequestUuid.hashCode() : 0;
-        result = 31 * result + (registrationTimeoutSec != null ? registrationTimeoutSec.hashCode() : 0);
+        int result = registrationTimeoutSec != null ? registrationTimeoutSec.hashCode() : 0;
         result = 31 * result + (authCode != null ? authCode.hashCode() : 0);
         result = 31 * result + (deviceID != null ? deviceID.hashCode() : 0);
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
@@ -115,8 +100,7 @@ public class RegistrationCacheData implements Serializable {
     @Override
     public String toString() {
         return "RegistrationCacheData{" +
-                "registrationRequestUuid='" + registrationRequestUuid + '\'' +
-                ", registrationTimeoutSec=" + registrationTimeoutSec +
+                "registrationTimeoutSec=" + registrationTimeoutSec +
                 ", authCode=" + authCode +
                 ", deviceID='" + deviceID + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
