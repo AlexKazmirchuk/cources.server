@@ -13,13 +13,12 @@ import static org.hamcrest.core.Is.is;
  * @author AlexKazmirchuk
  * @since 20.03.17.
  */
-
 public class AuthorizationCacheServiceTest {
 
     private RegistrationCacheData cacheData1;
     private RegistrationCacheData cacheData2;
 
-    private static AuthorizationCacheService cacheService = new AuthorizationCacheService();
+    private AuthorizationCacheService cacheService = new AuthorizationCacheService();
 
     @Before
     public void init(){
@@ -47,7 +46,8 @@ public class AuthorizationCacheServiceTest {
     }
 
     @Test
-    public void saveAndGetMethodTest(){
+    public void getMethodTest(){
+        saveMethodTest();
 
         RegistrationCacheData retrieveData1 = cacheService.get("first");
         RegistrationCacheData retrieveData2 = cacheService.get("second");
@@ -63,7 +63,5 @@ public class AuthorizationCacheServiceTest {
         assertThat(retrieveData2,is(cacheData2));
         assertThat(retrieveData3,nullValue());
         assertThat(retrieveData4,nullValue());
-
     }
-
 }
