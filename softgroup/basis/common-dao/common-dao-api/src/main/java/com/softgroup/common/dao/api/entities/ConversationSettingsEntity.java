@@ -20,7 +20,7 @@ public class ConversationSettingsEntity extends BaseEntity implements Serializab
     private String name;
 
     @Column(name = "admin_id")
-    private ProfileEntity admin;
+    private String admin;
 
     @Column(name = "logo_image_uri")
     private String logoImageUri;
@@ -36,11 +36,11 @@ public class ConversationSettingsEntity extends BaseEntity implements Serializab
         this.name = name;
     }
 
-    public ProfileEntity getAdmin() {
+    public String getAdmin() {
         return admin;
     }
 
-    public void setAdmin(ProfileEntity admin) {
+    public void setAdmin(String admin) {
         this.admin = admin;
     }
 
