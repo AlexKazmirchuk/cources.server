@@ -34,7 +34,7 @@ public abstract class CacheService<T> implements Cacheable<T> {
 
     @Override
     public void save(String key, T value) {
-        if (value != null){
+        if (key != null && value != null){
             cache.put(key,value);
         }
     }
@@ -44,6 +44,9 @@ public abstract class CacheService<T> implements Cacheable<T> {
 
     @Override
     public  T get(String key){
+        if (key == null){
+            return null;
+        }
         try {
             return cache.get(key);
         } catch (ExecutionException e) {
