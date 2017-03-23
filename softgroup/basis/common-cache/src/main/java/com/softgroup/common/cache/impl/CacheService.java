@@ -34,7 +34,9 @@ public abstract class CacheService<T> implements Cacheable<T> {
 
     @Override
     public void save(String key, T value) {
-        cache.put(key,value);
+        if (value != null){
+            cache.put(key,value);
+        }
     }
 
     @Override
