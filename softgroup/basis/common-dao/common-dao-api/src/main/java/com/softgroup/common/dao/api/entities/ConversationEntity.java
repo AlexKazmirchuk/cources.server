@@ -1,8 +1,8 @@
 package com.softgroup.common.dao.api.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.softgroup.common.dao.api.enums.ConversationType;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -21,8 +21,9 @@ public class ConversationEntity extends BaseEntity implements Serializable {
     @Column(name = "logo_image_uri")
     private String logoImageUri;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "type")
-    private Integer type;
+    private ConversationType type;
 
     @Column(name = "last_message_index")
     private Long lastMessageIndex;
@@ -46,11 +47,11 @@ public class ConversationEntity extends BaseEntity implements Serializable {
         this.logoImageUri = logoImageUri;
     }
 
-    public Integer getType() {
+    public ConversationType getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(ConversationType type) {
         this.type = type;
     }
 
