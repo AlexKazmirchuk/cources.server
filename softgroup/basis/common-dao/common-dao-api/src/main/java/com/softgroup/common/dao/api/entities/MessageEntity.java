@@ -1,8 +1,9 @@
 package com.softgroup.common.dao.api.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.softgroup.common.dao.api.enums.MessageStatus;
+import com.softgroup.common.dao.api.enums.MessageType;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -21,14 +22,16 @@ public class MessageEntity extends BaseEntity implements Serializable {
     @Column(name = "conversation_id")
     private String conversationID; // or Conversation conversation?
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "message_type")
-    private Integer messageType;
+    private MessageType messageType;
 
     @Column(name = "payload")
     private String payload;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "status")
-    private Integer status;
+    private MessageStatus status;
 
     @Column(name = "create_time")
     private Long createTime;
@@ -58,11 +61,11 @@ public class MessageEntity extends BaseEntity implements Serializable {
         this.conversationID = conversationID;
     }
 
-    public Integer getMessageType() {
+    public MessageType getMessageType() {
         return messageType;
     }
 
-    public void setMessageType(Integer messageType) {
+    public void setMessageType(MessageType messageType) {
         this.messageType = messageType;
     }
 
@@ -74,11 +77,11 @@ public class MessageEntity extends BaseEntity implements Serializable {
         this.payload = payload;
     }
 
-    public Integer getStatus() {
+    public MessageStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(MessageStatus status) {
         this.status = status;
     }
 
