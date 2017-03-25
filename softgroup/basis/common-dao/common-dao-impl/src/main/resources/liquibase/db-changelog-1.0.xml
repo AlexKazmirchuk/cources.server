@@ -1,0 +1,64 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="profile_settings-table-creating-1" author="AlexKazmirchuk">
+        <sql>
+            CREATE TABLE `profile_settings` (
+            `id` varchar(255) NOT NULL,
+            `settings_data` varchar(255) DEFAULT NULL,
+            PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        </sql>
+        <rollback>
+            <sql>
+                DROP TABLE `profile_settings`;
+            </sql>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="profiles-table-creating-2" author="AlexKazmirchuk">
+        <sql>
+            CREATE TABLE `profiles` (
+            `id` varchar(255) NOT NULL,
+            `avatar_uri` varchar(255) DEFAULT NULL,
+            `create_date_time` bigint(20) DEFAULT NULL,
+            `name` varchar(255) DEFAULT NULL,
+            `phone_number` varchar(255) DEFAULT NULL,
+            `status` varchar(255) DEFAULT NULL,
+            `update_date_time` bigint(20) DEFAULT NULL,
+            `profile_settings_id` varchar(255) DEFAULT NULL,
+            PRIMARY KEY (`id`),
+            KEY `FK_m4a9ax1hk187tmspmkx4s16qg` (`profile_settings_id`),
+            CONSTRAINT `FK_m4a9ax1hk187tmspmkx4s16qg` FOREIGN KEY (`profile_settings_id`) REFERENCES `profile_settings` (`id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        </sql>
+        <rollback>
+            <sql>
+                DROP TABLE `profiles`;
+            </sql>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="devices-table-creating-3" author="AlexKazmirchuk">
+        <sql>
+            CREATE TABLE `devices` (
+            `id` varchar(255) NOT NULL,
+            `device_id` varchar(255) DEFAULT NULL,
+            `last_confirmation_date` bigint(20) DEFAULT NULL,
+            `locale` varchar(255) DEFAULT NULL,
+            `profile_id` varchar(255) DEFAULT NULL,
+            PRIMARY KEY (`id`),
+            KEY `FK_me5fpj4xdeypba4djjaktrc2v` (`profile_id`),
+            CONSTRAINT `FK_me5fpj4xdeypba4djjaktrc2v` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        </sql>
+        <rollback>
+            <sql>
+                DROP TABLE `devices`;
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

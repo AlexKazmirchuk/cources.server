@@ -17,8 +17,7 @@ public class DeviceEntity extends BaseEntity implements Serializable {
     @Column(name = "last_confirmation_date")
     private Long lastConfirmationDate;
 
-    @ManyToOne
-    @JoinColumn(name = "profile_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     private ProfileEntity profile;
 
     @Column(name = "device_id")

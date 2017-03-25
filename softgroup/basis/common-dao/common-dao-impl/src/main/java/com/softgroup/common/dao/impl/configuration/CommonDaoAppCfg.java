@@ -1,5 +1,6 @@
 package com.softgroup.common.dao.impl.configuration;
 
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -68,8 +69,16 @@ public class CommonDaoAppCfg {
 
     private Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        //properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
+    }
+
+    @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:liquibase/db-changelog-master.xml");
+        liquibase.setDataSource(dataSource());
+        return liquibase;
     }
 }

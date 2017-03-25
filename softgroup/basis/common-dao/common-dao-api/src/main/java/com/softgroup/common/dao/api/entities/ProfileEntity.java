@@ -2,7 +2,6 @@ package com.softgroup.common.dao.api.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * Created by Odin on 29.02.2016.
@@ -31,11 +30,9 @@ public class ProfileEntity extends BaseEntity implements Serializable{
 	@Column(name = "avatar_uri")
     private String avatarUri;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_settings_id")
 	private ProfileSettingsEntity settings;
-
-    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<DeviceEntity> devices;
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -93,39 +90,33 @@ public class ProfileEntity extends BaseEntity implements Serializable{
         this.settings = settings;
     }
 
-    public Set<DeviceEntity> getDevices() {
-        return devices;
-    }
-
-    public void setDevices(Set<DeviceEntity> devices) {
-        this.devices = devices;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof ProfileEntity)) return false;
 
         ProfileEntity that = (ProfileEntity) o;
 
-        if (!this.getId().equals(that.getId())) return false;
-        if (!phoneNumber.equals(that.phoneNumber)) return false;
-        if (!createDateTime.equals(that.createDateTime)) return false;
-        if (!updateDateTime.equals(that.updateDateTime)) return false;
-        if (!name.equals(that.name)) return false;
-        if (!status.equals(that.status)) return false;
-        return avatarUri.equals(that.avatarUri);
+        if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
+        if (createDateTime != null ? !createDateTime.equals(that.createDateTime) : that.createDateTime != null)
+            return false;
+        if (updateDateTime != null ? !updateDateTime.equals(that.updateDateTime) : that.updateDateTime != null)
+            return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (status != null ? !status.equals(that.status) : that.status != null) return false;
+        if (avatarUri != null ? !avatarUri.equals(that.avatarUri) : that.avatarUri != null) return false;
+        return settings != null ? settings.equals(that.settings) : that.settings == null;
     }
 
     @Override
     public int hashCode() {
-        int result = getId().hashCode();
-        result = 31 * result + phoneNumber.hashCode();
-        result = 31 * result + createDateTime.hashCode();
-        result = 31 * result + updateDateTime.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + status.hashCode();
-        result = 31 * result + avatarUri.hashCode();
+        int result = phoneNumber != null ? phoneNumber.hashCode() : 0;
+        result = 31 * result + (createDateTime != null ? createDateTime.hashCode() : 0);
+        result = 31 * result + (updateDateTime != null ? updateDateTime.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (avatarUri != null ? avatarUri.hashCode() : 0);
+        result = 31 * result + (settings != null ? settings.hashCode() : 0);
         return result;
     }
 }
