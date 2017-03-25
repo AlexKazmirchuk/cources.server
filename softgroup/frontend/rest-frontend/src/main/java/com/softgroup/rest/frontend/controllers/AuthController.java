@@ -10,16 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-
 /**
  * @author AlexKazmirchuk
- * @since 14.03.17.
+ * @since 25.03.17.
  */
-
 @RestController
-@RequestMapping(method = RequestMethod.POST)
-public class MainController {
+public class AuthController {
 
     @Autowired
     private DataMapper mapper;
@@ -27,10 +23,15 @@ public class MainController {
     @Autowired
     private FirstRouter firstRouter;
 
-    @RequestMapping("/api/private")
-    private String handlePrivateRequest(@RequestBody String jsonRequestData){
+    @RequestMapping(name = "/api/public", method = RequestMethod.POST)
+    private String handlePublicRequest(@RequestBody String jsonRequestData){
         Request<?> msg = mapper.mapData(jsonRequestData, new TypeReference<Request<?>>() {});
         return mapper.objectToString(firstRouter.handle(msg));
+    }
+
+    @RequestMapping
+    private String commonRequestHandle(){
+        return "Welcome to our Messenger!";
     }
 
 }
