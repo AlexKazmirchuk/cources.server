@@ -15,6 +15,9 @@ public class ProfileSettingsEntity extends BaseEntity implements Serializable {
     @Column(name = "settings_data")
     private String settingsData;
 
+    public ProfileSettingsEntity() {
+    }
+
     public String getSettingsData() {
         return settingsData;
     }
@@ -26,18 +29,15 @@ public class ProfileSettingsEntity extends BaseEntity implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof ProfileSettingsEntity)) return false;
 
         ProfileSettingsEntity that = (ProfileSettingsEntity) o;
 
-        if (!this.getId().equals(that.getId())) return false;
-        return settingsData.equals(that.settingsData);
+        return settingsData != null ? settingsData.equals(that.settingsData) : that.settingsData == null;
     }
 
     @Override
     public int hashCode() {
-        int result = getId().hashCode();
-        result = 31 * result + settingsData.hashCode();
-        return result;
+        return settingsData != null ? settingsData.hashCode() : 0;
     }
 }
