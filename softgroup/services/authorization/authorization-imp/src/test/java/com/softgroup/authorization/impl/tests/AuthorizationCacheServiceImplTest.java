@@ -1,6 +1,7 @@
 package com.softgroup.authorization.impl.tests;
 
 import com.softgroup.authorization.impl.cache.AuthorizationCacheService;
+import com.softgroup.authorization.impl.cache.AuthorizationCacheServiceImpl;
 import com.softgroup.authorization.impl.cache.RegistrationCacheData;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,12 +14,12 @@ import static org.hamcrest.core.Is.is;
  * @author AlexKazmirchuk
  * @since 20.03.17.
  */
-public class AuthorizationCacheServiceTest {
+public class AuthorizationCacheServiceImplTest {
 
     private RegistrationCacheData cacheData1;
     private RegistrationCacheData cacheData2;
 
-    private AuthorizationCacheService cacheService = new AuthorizationCacheService();
+    private AuthorizationCacheService cacheService = new AuthorizationCacheServiceImpl();
 
     @Before
     public void init(){
