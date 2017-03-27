@@ -20,6 +20,14 @@
 			<groupId>com.softgroup</groupId>
 			<artifactId>common-cache</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.softgroup</groupId>
+			<artifactId>common-jwt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.softgroup</groupId>
+			<artifactId>common-dao-impl</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
