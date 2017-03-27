@@ -12,7 +12,7 @@ public class RegistrationCacheData implements Serializable {
     private static final long serialVersionUID = -7589939630840486542L;
 
     private Integer registrationTimeoutSec;
-    private Integer authCode;
+    private String authCode;
     private String deviceID;
     private String phoneNumber;
     private String locale;
@@ -21,7 +21,7 @@ public class RegistrationCacheData implements Serializable {
     }
 
     public RegistrationCacheData(Integer registrationTimeoutSec,
-                                 Integer authCode,
+                                 String authCode,
                                  String deviceID,
                                  String phoneNumber,
                                  String locale) {
@@ -64,11 +64,11 @@ public class RegistrationCacheData implements Serializable {
         this.registrationTimeoutSec = registrationTimeoutSec;
     }
 
-    public Integer getAuthCode() {
+    public String getAuthCode() {
         return authCode;
     }
 
-    public void setAuthCode(Integer authCode) {
+    public void setAuthCode(String authCode) {
         this.authCode = authCode;
     }
 
