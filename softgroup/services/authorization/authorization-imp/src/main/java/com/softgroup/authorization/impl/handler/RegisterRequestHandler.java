@@ -5,10 +5,7 @@ import com.softgroup.authorization.api.message.RegisterResponse;
 import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.authorization.impl.cache.AuthorizationCacheService;
 import com.softgroup.authorization.impl.cache.RegistrationCacheData;
-import com.softgroup.common.protocol.ActionHeader;
-import com.softgroup.common.protocol.Request;
-import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.protocol.*;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -47,12 +44,7 @@ public class RegisterRequestHandler
         RegisterResponse responseData = fillResponseData(authCode,registrationRequestUuid,regTimeout);
         ResponseStatus responseStatus = getOkStatus();
 
-        Response<RegisterResponse> response = new Response<>();
-        response.setHeader(responseHeader);
-        response.setData(responseData);
-        response.setStatus(responseStatus);
-
-        return response;
+        return ResponseFactory.createResponse(responseHeader,responseData,responseStatus);
     }
 
     private RegistrationCacheData createRegCacheData(RegisterRequest data){
