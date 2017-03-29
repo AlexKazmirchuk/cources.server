@@ -1,10 +1,16 @@
 package com.softgroup.rest.frontend.filters;
 
+import com.softgroup.rest.frontend.configuration.security.TokenAuthentication;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -14,21 +20,15 @@ import java.io.IOException;
  * @since 18.03.17.
  */
 
-public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
-
-
-    protected TokenAuthenticationFilter(String defaultFilterProcessesUrl) {
-        super(defaultFilterProcessesUrl);
-    }
-
-    public TokenAuthenticationFilter(){
-        super("/api/private/**");
-    }
+public class TokenAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
-        // todo implement later
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+        // todo check token
+//        if (token == valid){
+//            SecurityContextHolder.getContext().setAuthentication(new TokenAuthentication());
+//        }
 
-        return null;
+        chain.doFilter(req,res);
     }
 }

@@ -17,14 +17,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // todo configurate properly
-        http.headers()
-                .frameOptions()
-                .sameOrigin()
-                .and()
-                .csrf().disable()
-                .addFilterAfter(new TokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+        http
+                .addFilterBefore(new TokenAuthenticationFilter(),UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/","api/public/*").permitAll()
-                .antMatchers("/api/private/*").authenticated();
+                .antMatchers("/", "/api/public/**").permitAll()
+                .anyRequest().authenticated()
+                .and().csrf().disable();
+
     }
 }
