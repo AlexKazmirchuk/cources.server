@@ -13,4 +13,12 @@ public class ResponseFactory {
                 .setStatus(status)
                 .build();
     }
+
+    public static <T extends ResponseData> Response<T> createResponseWithOk (ActionHeader header, T data){
+        return new Response.ResponseBuilder<T>()
+                .setHeader(header)
+                .setData(data)
+                .setOkStatus()
+                .build();
+    }
 }
