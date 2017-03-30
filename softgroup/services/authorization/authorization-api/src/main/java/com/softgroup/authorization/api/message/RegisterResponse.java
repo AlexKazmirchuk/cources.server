@@ -13,6 +13,15 @@ public class RegisterResponse implements ResponseData {
 	private String registrationTimeoutSec;
 	private String authCode;
 
+	public RegisterResponse(String registrationRequestUuid, String registrationTimeoutSec, String authCode) {
+		this.registrationRequestUuid = registrationRequestUuid;
+		this.registrationTimeoutSec = registrationTimeoutSec;
+		this.authCode = authCode;
+	}
+
+	public RegisterResponse() {
+	}
+
 	public String getRegistrationRequestUuid() {
 		return registrationRequestUuid;
 	}

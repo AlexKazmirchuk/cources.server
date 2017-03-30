@@ -23,6 +23,8 @@ public class RegisterRequestHandler
         extends AbstractRequestHandler<RegisterRequest,RegisterResponse>
         implements AuthorizationRequestHandler {
 
+    private static final String REGISTER_TIMEOUT = "1800";
+
     @Autowired
     private AuthorizationCacheService cacheService;
 
@@ -38,13 +40,11 @@ public class RegisterRequestHandler
         String authCode = createAuthCode();
         cacheData.setAuthCode(authCode);
         String registrationRequestUuid = putToCache(cacheData);
-        int regTimeout = 30*60;
 
-        ActionHeader responseHeader = fillHeader(msg.getHeader());
-        RegisterResponse responseData = fillResponseData(authCode,registrationRequestUuid,regTimeout);
-        ResponseStatus responseStatus = getOkStatus();
+        ActionHeader responseHeader =  ActionHeaderFactory.createHeader(msg.getHeader());
+        RegisterResponse responseData = new RegisterResponse(registrationRequestUuid,REGISTER_TIMEOUT,authCode);
 
-        return ResponseFactory.createResponse(responseHeader,responseData,responseStatus);
+        return ResponseFactory.createResponseWithOk(responseHeader,responseData);
     }
 
     private RegistrationCacheData createRegCacheData(RegisterRequest data){
@@ -65,35 +65,4 @@ public class RegisterRequestHandler
         return  String.valueOf(new Random().nextInt(999999));
     }
 
-    private RegisterResponse fillResponseData(String authCode, String regUuid, int regTimeout){
-        RegisterResponse responseData = new RegisterResponse();
-        responseData.setAuthCode(authCode);
-        responseData.setRegistrationRequestUuid(regUuid);
-        responseData.setRegistrationTimeoutSec(String.valueOf(regTimeout));
-        return responseData;
-    }
-
-    private ActionHeader fillHeader(ActionHeader requestHeader){
-        ActionHeader responseHeader = new ActionHeader();
-        responseHeader.setType(requestHeader.getType());
-        responseHeader.setCommand(requestHeader.getCommand());
-        responseHeader.setVersion(requestHeader.getVersion());
-        responseHeader.setOriginUuid(requestHeader.getUuid());
-        responseHeader.setUuid(UUID.randomUUID().toString()); //todo fix later
-        return responseHeader;
-    }
-
-    private ResponseStatus getOkStatus(){
-        ResponseStatus status = new ResponseStatus();
-        status.setCode(200);
-        status.setMessage("OK");
-        return status;
-    }
-
-    private ResponseStatus getBadStatus(){
-        ResponseStatus status = new ResponseStatus();
-        status.setCode(422);
-        status.setMessage("Unprocessable Entity");
-        return status;
-    }
 }
