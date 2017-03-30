@@ -48,9 +48,13 @@ public class TokenAuthenticationFilter extends UsernamePasswordAuthenticationFil
             SecurityContextHolder
                     .getContext()
                     .setAuthentication(new TokenAuthentication(profileID,deviceID));
+            chain.doFilter(req,res);
         } catch (InvalidTokenException e) {
-            // do nothing
+            res.getWriter().print("{\n" +
+                    "\t\"code\" : 403,\n" +
+                    "\t\"message\" : \"Forbidden\"\n" +
+                    "}");
         }
-        chain.doFilter(req,res);
     }
+
 }
