@@ -10,6 +10,13 @@ public class SmsConfirmResponse implements ResponseData {
 
     private String deviceToken;
 
+    public SmsConfirmResponse(String deviceToken) {
+        this.deviceToken = deviceToken;
+    }
+
+    public SmsConfirmResponse() {
+    }
+
     public String getDeviceToken() {
         return deviceToken;
     }

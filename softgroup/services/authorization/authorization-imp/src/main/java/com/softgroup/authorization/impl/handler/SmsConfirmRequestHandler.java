@@ -10,10 +10,7 @@ import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.impl.services.DeviceService;
 import com.softgroup.common.dao.impl.services.ProfileService;
 import com.softgroup.common.jwt.api.TokenService;
-import com.softgroup.common.protocol.ActionHeader;
-import com.softgroup.common.protocol.Request;
-import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.protocol.*;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -48,7 +45,6 @@ public class SmsConfirmRequestHandler
 
     @Override
     public Response<SmsConfirmResponse> doHandle(Request<SmsConfirmRequest> msg) {
-        Response<SmsConfirmResponse> response = new Response<>();
 
         String authCode = msg.getData().getAuthCode();
         String regRequestUuid = msg.getData().getRegistrationRequestUuid();
@@ -65,19 +61,12 @@ public class SmsConfirmRequestHandler
 
             String deviceToken = tokenService.createDeviceToken(profile.getId(),device.getId());
 
-            ActionHeader responseHeader = createResponseHeader(msg.getHeader());
-            SmsConfirmResponse responseData = new SmsConfirmResponse();
-            responseData.setDeviceToken(deviceToken);
-            ResponseStatus responseStatus = getOkStatus();
+            ActionHeader responseHeader = ActionHeaderFactory.createHeader(msg.getHeader());
+            SmsConfirmResponse responseData = new SmsConfirmResponse(deviceToken);
 
-            response.setHeader(responseHeader);
-            response.setData(responseData);
-            response.setStatus(responseStatus);
-
-            return response;
+            return ResponseFactory.createResponseWithOk(responseHeader,responseData);
         } else {
-            response.setStatus(getBadStatus());
-            return response;
+            return ResponseFactory.createResponse(null,null, new ResponseStatus(406,"Not acceptable"));
         }
     }
 
@@ -97,27 +86,4 @@ public class SmsConfirmRequestHandler
         return device;
     }
 
-    private ActionHeader createResponseHeader(ActionHeader requestHeader){
-        ActionHeader responseHeader = new ActionHeader();
-        responseHeader.setVersion(requestHeader.getVersion());
-        responseHeader.setType(requestHeader.getType());
-        responseHeader.setCommand(requestHeader.getCommand());
-        responseHeader.setOriginUuid(requestHeader.getUuid());
-        responseHeader.setUuid(UUID.randomUUID().toString()); // todo fix later
-        return responseHeader;
-    }
-
-    private ResponseStatus getOkStatus(){
-        ResponseStatus status = new ResponseStatus();
-        status.setCode(200);
-        status.setMessage("OK");
-        return status;
-    }
-
-    private ResponseStatus getBadStatus(){
-        ResponseStatus status = new ResponseStatus();
-        status.setCode(406);
-        status.setMessage("Not acceptable");
-        return status;
-    }
 }
