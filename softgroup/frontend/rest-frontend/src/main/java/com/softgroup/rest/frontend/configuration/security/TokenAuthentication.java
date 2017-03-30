@@ -10,7 +10,25 @@ import java.util.Collection;
  * @since 29.03.17.
  */
 public class TokenAuthentication implements Authentication {
+
+    private static final long serialVersionUID = -3421986039337831938L;
+
     private boolean authenticated  = true;
+    private String profileID;
+    private String deviceID;
+
+    public TokenAuthentication(String profileID, String deviceID) {
+        this.profileID = profileID;
+        this.deviceID = deviceID;
+    }
+
+    public String getProfileID() {
+        return profileID;
+    }
+
+    public String getDeviceID() {
+        return deviceID;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -29,7 +47,7 @@ public class TokenAuthentication implements Authentication {
 
     @Override
     public Object getPrincipal() {
-        return null;
+        return profileID;
     }
 
     @Override
