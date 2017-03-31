@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -50,10 +51,7 @@ public class TokenAuthenticationFilter extends UsernamePasswordAuthenticationFil
                     .setAuthentication(new TokenAuthentication(profileID,deviceID));
             chain.doFilter(req,res);
         } catch (InvalidTokenException e) {
-            res.getWriter().print("{\n" +
-                    "\t\"code\" : 403,\n" +
-                    "\t\"message\" : \"Forbidden\"\n" +
-                    "}");
+            ((HttpServletResponse) res).sendError(403);
         }
     }
 
