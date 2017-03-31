@@ -4,21 +4,21 @@ package com.softgroup.common.model.mapper.models;
  * @author AlexKazmirchuk
  * @since 31.03.17.
  */
-public class Person {
+public class TestPerson {
 
     private String name;
     private String lastName;
-    private Address address;
+    private TestAddress address;
     private int age;
 
-    public Person(String name, String lastName, int age, Address address) {
+    public TestPerson(String name, String lastName, int age, TestAddress address) {
         this.name = name;
         this.lastName = lastName;
         this.address = address;
         this.age = age;
     }
 
-    public Person() {
+    public TestPerson() {
     }
 
     public String getName() {
@@ -37,11 +37,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Address getAddress() {
+    public TestAddress getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(TestAddress address) {
         this.address = address;
     }
 

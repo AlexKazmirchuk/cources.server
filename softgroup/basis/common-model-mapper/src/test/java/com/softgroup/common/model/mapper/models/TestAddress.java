@@ -4,19 +4,19 @@ package com.softgroup.common.model.mapper.models;
  * @author AlexKazmirchuk
  * @since 31.03.17.
  */
-public class Address {
+public class TestAddress {
 
     private String city;
     private String street;
     private String country;
 
-    public Address(String city, String street, String country) {
+    public TestAddress(String city, String street, String country) {
         this.city = city;
         this.street = street;
         this.country = country;
     }
 
-    public Address() {
+    public TestAddress() {
     }
 
     public String getCity() {

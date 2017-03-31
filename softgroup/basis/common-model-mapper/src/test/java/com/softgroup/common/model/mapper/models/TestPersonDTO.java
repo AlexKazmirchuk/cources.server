@@ -4,7 +4,7 @@ package com.softgroup.common.model.mapper.models;
  * @author AlexKazmirchuk
  * @since 31.03.17.
  */
-public class PersonDTO {
+public class TestPersonDTO {
 
     private String name;
     private String lastName;
@@ -13,7 +13,7 @@ public class PersonDTO {
     private String street;
     private String country;
 
-    public PersonDTO() {
+    public TestPersonDTO() {
     }
 
     public String getName() {
