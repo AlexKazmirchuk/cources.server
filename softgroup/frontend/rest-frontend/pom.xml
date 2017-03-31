@@ -49,6 +49,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.softgroup</groupId>
+            <artifactId>common-model-mapper</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.web.version}</version>

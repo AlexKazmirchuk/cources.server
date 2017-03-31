@@ -53,6 +53,12 @@
 				<artifactId>common-jwt</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+
+			<dependency>
+				<groupId>com.softgroup</groupId>
+				<artifactId>common-model-mapper</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 		</dependencies>
 
 	</dependencyManagement>

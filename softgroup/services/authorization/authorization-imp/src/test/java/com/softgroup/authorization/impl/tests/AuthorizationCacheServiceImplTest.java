@@ -27,13 +27,13 @@ public class AuthorizationCacheServiceImplTest {
         cacheData1 = new RegistrationCacheData();
         cacheData1.setAuthCode("233");
         cacheData1.setDeviceID("sffdag34434");
-        cacheData1.setLocale("en_EN");
+        cacheData1.setLocaleCode("en_EN");
         cacheData1.setPhoneNumber("35663434");
 
         cacheData2 = new RegistrationCacheData();
         cacheData2.setAuthCode("243433");
         cacheData2.setDeviceID("sdkl4903");
-        cacheData2.setLocale("ru_RU");
+        cacheData2.setLocaleCode("ru_RU");
         cacheData2.setPhoneNumber("0500403443");
     }
 

@@ -5,6 +5,7 @@ import com.softgroup.authorization.api.message.RegisterResponse;
 import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.authorization.impl.cache.AuthorizationCacheService;
 import com.softgroup.authorization.impl.cache.RegistrationCacheData;
+import com.softgroup.common.model.mapper.api.ModelMapper;
 import com.softgroup.common.protocol.*;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class RegisterRequestHandler
     @Autowired
     private AuthorizationCacheService cacheService;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Override
     public String getName() {
         return "register";
@@ -36,7 +40,7 @@ public class RegisterRequestHandler
     @Override
     public Response<RegisterResponse> doHandle(Request<RegisterRequest> msg) {
 
-        RegistrationCacheData cacheData = createRegCacheData(msg.getData());
+        RegistrationCacheData cacheData = modelMapper.map(msg.getData(),RegistrationCacheData.class);
         String authCode = createAuthCode();
         cacheData.setAuthCode(authCode);
         String registrationRequestUuid = putToCache(cacheData);
@@ -45,14 +49,6 @@ public class RegisterRequestHandler
         RegisterResponse responseData = new RegisterResponse(registrationRequestUuid,REGISTER_TIMEOUT,authCode);
 
         return ResponseFactory.createResponseWithOk(responseHeader,responseData);
-    }
-
-    private RegistrationCacheData createRegCacheData(RegisterRequest data){
-        RegistrationCacheData cacheData = new RegistrationCacheData();
-        cacheData.setPhoneNumber(data.getPhoneNumber());
-        cacheData.setLocale(data.getLocaleCode());
-        cacheData.setDeviceID(data.getDeviceID());
-        return cacheData;
     }
 
     private String putToCache(RegistrationCacheData cacheData){

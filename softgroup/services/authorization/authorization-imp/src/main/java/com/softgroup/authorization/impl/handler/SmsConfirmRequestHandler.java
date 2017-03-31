@@ -80,7 +80,7 @@ public class SmsConfirmRequestHandler
 
     private DeviceEntity createDevice(RegistrationCacheData regData){
         DeviceEntity device = new DeviceEntity();
-        device.setLocale(regData.getLocale());
+        device.setLocale(regData.getLocaleCode());
         device.setDeviceID(regData.getDeviceID());
         device.setLastConfirmationDate(System.currentTimeMillis());
         return device;

@@ -28,6 +28,10 @@
 			<groupId>com.softgroup</groupId>
 			<artifactId>common-dao-impl</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.softgroup</groupId>
+			<artifactId>common-model-mapper</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
