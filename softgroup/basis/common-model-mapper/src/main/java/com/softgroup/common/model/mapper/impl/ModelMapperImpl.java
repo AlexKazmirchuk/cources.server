@@ -1,6 +1,7 @@
 package com.softgroup.common.model.mapper.impl;
 
 import com.softgroup.common.model.mapper.api.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,6 +16,8 @@ public class ModelMapperImpl implements ModelMapper {
 
     public ModelMapperImpl() {
         modelMapper = new org.modelmapper.ModelMapper();
+        modelMapper.getConfiguration()
+                .setMatchingStrategy(MatchingStrategies.LOOSE);
         // todo configure later
     }
 
