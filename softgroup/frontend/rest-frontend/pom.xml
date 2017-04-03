@@ -12,7 +12,7 @@
     <artifactId>rest-frontend</artifactId>
 
     <properties>
-        <spring.core.version>4.2.5.RELEASE</spring.core.version>
+        <spring.core.version>4.3.5.RELEASE</spring.core.version>
         <spring.web.version>4.2.5.RELEASE</spring.web.version>
     </properties>
 
