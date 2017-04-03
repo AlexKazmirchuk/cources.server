@@ -7,6 +7,7 @@ import com.softgroup.common.jwt.configuration.TokenServiceAppCfg;
 import com.softgroup.common.router.impl.configuration.FirstRouterAppCfg;
 import com.softgroup.messenger.impl.configuration.MessengerImplAppCfg;
 import com.softgroup.profile.impl.configuration.ProfileImplAppCfg;
+import com.softgroup.rest.frontend.configuration.security.SecurityConfig;
 import org.springframework.context.annotation.*;
 
 
@@ -21,7 +22,8 @@ import org.springframework.context.annotation.*;
         MessengerImplAppCfg.class,
         FirstRouterAppCfg.class,
         TokenServiceAppCfg.class,
-        CommonDaoAppCfg.class})
+        CommonDaoAppCfg.class,
+        SecurityConfig.class})
 
 public class RestApplicationConfiguration {
 

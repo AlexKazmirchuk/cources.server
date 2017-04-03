@@ -17,6 +17,7 @@
         <module>common-dao</module>
         <module>common-cache</module>
         <module>common-jwt</module>
+        <module>common-model-mapper</module>
     </modules>
 
     <dependencies>
