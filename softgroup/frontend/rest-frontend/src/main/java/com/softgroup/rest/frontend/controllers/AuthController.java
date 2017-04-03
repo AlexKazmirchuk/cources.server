@@ -23,7 +23,7 @@ public class AuthController {
     @Autowired
     private FirstRouter firstRouter;
 
-    @RequestMapping(name = "/api/public", method = RequestMethod.POST)
+    @RequestMapping(path = "api/public", method = RequestMethod.POST)
     private String handlePublicRequest(@RequestBody String jsonRequestData){
         Request<?> msg = mapper.mapData(jsonRequestData, new TypeReference<Request<?>>() {});
         return mapper.objectToString(firstRouter.handle(msg));

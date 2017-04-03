@@ -2,9 +2,11 @@ package com.softgroup.rest.frontend.configuration;
 
 import com.softgroup.authorization.impl.configuration.AuthorizationImplAppCfg;
 import com.softgroup.common.datamapper.configuration.DataMapperAppCfg;
+import com.softgroup.common.jwt.configuration.TokenServiceAppCfg;
 import com.softgroup.common.router.impl.configuration.FirstRouterAppCfg;
 import com.softgroup.messenger.impl.configuration.MessengerImplAppCfg;
 import com.softgroup.profile.impl.configuration.ProfileImplAppCfg;
+import com.softgroup.rest.frontend.configuration.security.SecurityConfig;
 import org.springframework.context.annotation.*;
 
 
@@ -17,7 +19,9 @@ import org.springframework.context.annotation.*;
         AuthorizationImplAppCfg.class,
         ProfileImplAppCfg.class,
         MessengerImplAppCfg.class,
-        FirstRouterAppCfg.class})
+        FirstRouterAppCfg.class,
+        SecurityConfig.class,
+        TokenServiceAppCfg.class})
 
 public class RestApplicationConfiguration {
 
