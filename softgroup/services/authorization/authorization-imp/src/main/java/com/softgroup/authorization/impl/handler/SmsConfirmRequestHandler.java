@@ -10,12 +10,13 @@ import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.impl.services.DeviceService;
 import com.softgroup.common.dao.impl.services.ProfileService;
 import com.softgroup.common.jwt.api.TokenService;
-import com.softgroup.common.protocol.*;
+import com.softgroup.common.protocol.Request;
+import com.softgroup.common.protocol.Response;
+import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.protocol.factories.MessageFactory;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.UUID;
 
 /**
  * Created by sasha on 23.02.17.
@@ -61,12 +62,11 @@ public class SmsConfirmRequestHandler
 
             String deviceToken = tokenService.createDeviceToken(profile.getId(),device.getId());
 
-            ActionHeader responseHeader = ActionHeaderFactory.createHeader(msg.getHeader());
             SmsConfirmResponse responseData = new SmsConfirmResponse(deviceToken);
 
-            return ResponseFactory.createResponseWithOk(responseHeader,responseData);
+            return MessageFactory.createResponseWithOk(msg,responseData);
         } else {
-            return ResponseFactory.createResponse(null,null, new ResponseStatus(406,"Not acceptable"));
+            return MessageFactory.createResponse(msg,null, new ResponseStatus(406,"Not acceptable") );
         }
     }
 

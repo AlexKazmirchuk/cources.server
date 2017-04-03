@@ -2,6 +2,7 @@ package com.softgroup.common.router.api;
 
 import com.softgroup.common.datamapper.DataMapper;
 import com.softgroup.common.protocol.*;
+import com.softgroup.common.protocol.factories.RequestFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.ParameterizedType;

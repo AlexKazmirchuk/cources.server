@@ -1,4 +1,9 @@
-package com.softgroup.common.protocol;
+package com.softgroup.common.protocol.factories;
+
+import com.softgroup.common.protocol.ActionHeader;
+import com.softgroup.common.protocol.Response;
+import com.softgroup.common.protocol.ResponseData;
+import com.softgroup.common.protocol.ResponseStatus;
 
 /**
  * @author AlexKazmirchuk

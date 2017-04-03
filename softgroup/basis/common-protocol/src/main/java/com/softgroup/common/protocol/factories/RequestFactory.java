@@ -1,4 +1,8 @@
-package com.softgroup.common.protocol;
+package com.softgroup.common.protocol.factories;
+
+import com.softgroup.common.protocol.ActionHeader;
+import com.softgroup.common.protocol.Request;
+import com.softgroup.common.protocol.RequestData;
 
 /**
  * @author AlexKazmirchuk
