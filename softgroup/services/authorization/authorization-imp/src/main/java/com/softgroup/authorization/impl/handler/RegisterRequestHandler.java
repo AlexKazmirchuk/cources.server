@@ -5,6 +5,7 @@ import com.softgroup.authorization.api.message.RegisterResponse;
 import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.authorization.impl.cache.AuthorizationCacheService;
 import com.softgroup.authorization.impl.cache.RegistrationCacheData;
+import com.softgroup.common.dao.impl.services.ProfileService;
 import com.softgroup.common.model.mapper.api.ModelMapper;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
@@ -34,6 +35,9 @@ public class RegisterRequestHandler
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private ProfileService profileService;
 
     @Override
     public String getName() {
@@ -65,10 +69,9 @@ public class RegisterRequestHandler
     }
 
     private boolean checkIfExist(String phoneNumber){
-        // todo implement later
-        // this method must be check if data base contains profile with such phone number
-        // if exist then return true;
-        return false;
+        if (profileService.findByPhoneNumber(phoneNumber) == null){
+            return false;
+        } else return true;
     }
 
     private String createAuthCode(){

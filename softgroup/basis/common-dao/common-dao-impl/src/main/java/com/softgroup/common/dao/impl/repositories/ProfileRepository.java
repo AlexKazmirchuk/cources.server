@@ -14,4 +14,6 @@ public interface ProfileRepository extends BaseRepository<ProfileEntity> {
     List<ProfileEntity> findByName(String s);
 
     List<ProfileEntity> findByNameAndPhoneNumber(String s, String number);
+
+    ProfileEntity findByPhoneNumber(String phone);
 }
