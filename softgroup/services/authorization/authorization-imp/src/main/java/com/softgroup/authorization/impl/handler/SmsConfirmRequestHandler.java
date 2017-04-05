@@ -66,7 +66,7 @@ public class SmsConfirmRequestHandler
 
             return MessageFactory.createResponseWithOk(msg,responseData);
         } else {
-            return MessageFactory.createResponse(msg,null, new ResponseStatus(406,"Not acceptable") );
+            return MessageFactory.createResponse(msg,null, ResponseStatus.NOT_ACCEPTABLE );
         }
     }
 

@@ -46,7 +46,7 @@ public class RegisterRequestHandler
         RegistrationCacheData cacheData = modelMapper.map(msg.getData(),RegistrationCacheData.class);
 
         if (checkIfExist(cacheData.getPhoneNumber())){
-            return MessageFactory.createResponse(msg, null, new ResponseStatus(406,"Not acceptable"));
+            return MessageFactory.createResponse(msg, null, ResponseStatus.NOT_ACCEPTABLE);
         }
 
         String authCode = createAuthCode();

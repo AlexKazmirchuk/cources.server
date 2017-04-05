@@ -50,7 +50,7 @@ public class Response<T extends Serializable> extends RoutedAction<T> {
 		}
 
 		public ResponseBuilder<T> setOkStatus(){
-			status = new ResponseStatus(200,"OK");
+			status = ResponseStatus.OK;
 			return this;
 		}
 
