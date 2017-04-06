@@ -20,9 +20,9 @@ public enum  ResponseStatus {
     NOT_IMPLEMENTED(501,"not implemented");
 
     private Integer code;
-    private Object message;
+    private String message;
 
-    private ResponseStatus(Integer code, Object message) {
+    private ResponseStatus(Integer code, String message) {
         this.code = code;
         this.message = message;
     }
@@ -35,11 +35,11 @@ public enum  ResponseStatus {
         this.code = code;
     }
 
-    public Object getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(Object message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
