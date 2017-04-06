@@ -13,7 +13,7 @@ public class ActionHeaderFactory {
                 .setCommand(requestHeader.getCommand())
                 .setVersion(requestHeader.getVersion())
                 .setOriginUuid(requestHeader.getUuid())
-                .setUuid(UUID.randomUUID().toString())
+                .setUuid(ActionHeader.SERVER_UUID)
                 .build();
     }
 }

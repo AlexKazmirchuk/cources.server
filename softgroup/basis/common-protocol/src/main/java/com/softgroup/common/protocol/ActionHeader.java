@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class ActionHeader implements Serializable {
 	private static final long serialVersionUID = -6161658016500127613L;
 
+	public static final String SERVER_UUID = "6fbc6af7-f6e7-473f-9f46-508906f52bf7";
+
 	private String uuid;
     private String originUuid;
     private String command;
