@@ -1,7 +1,5 @@
 package com.softgroup.common.protocol;
 
-import java.util.UUID;
-
 /**
  * @author AlexKazmirchuk
  * @since 30.03.17.

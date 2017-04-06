@@ -1,10 +1,5 @@
 package com.softgroup.common.protocol;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
-@JsonIgnoreProperties( { "declaring_class" })
 public enum ResponseStatusType {
 
     OK(200,"ok"),
