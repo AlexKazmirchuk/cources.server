@@ -64,9 +64,9 @@ public class SmsConfirmRequestHandler
 
             SmsConfirmResponse responseData = new SmsConfirmResponse(deviceToken);
 
-            return MessageFactory.createResponseWithOk(msg,responseData);
+            return MessageFactory.createResponse(msg,responseData);
         } else {
-            return MessageFactory.createResponse(msg,null, ResponseStatus.NOT_ACCEPTABLE );
+            return MessageFactory.createResponse(msg, ResponseStatus.NOT_ACCEPTABLE );
         }
     }
 

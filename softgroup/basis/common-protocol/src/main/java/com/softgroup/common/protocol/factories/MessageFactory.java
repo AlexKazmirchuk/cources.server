@@ -9,16 +9,15 @@ import com.softgroup.common.protocol.*;
 
 public class MessageFactory {
 
-    public static<T extends ResponseData> Response<T> createResponseWithOk(Request request, T responseData){
-        return ResponseFactory.createResponseWithOk(
+    public static<T extends ResponseData> Response<T> createResponse(Request request, T responseData){
+        return ResponseFactory.createResponse(
                 ActionHeaderFactory.createHeader(request.getHeader())
                 ,responseData);
     }
 
-    public static <T extends ResponseData> Response<T> createResponse(Request request, T responseData, ResponseStatus status){
+    public static <T extends ResponseData> Response<T> createResponse(Request request, ResponseStatus status){
         return ResponseFactory.createResponse(
                         ActionHeaderFactory.createHeader(request.getHeader())
-                        ,responseData
                         ,status);
     }
 }

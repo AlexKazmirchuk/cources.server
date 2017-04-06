@@ -49,11 +49,6 @@ public class Response<T extends Serializable> extends RoutedAction<T> {
 			return this;
 		}
 
-		public ResponseBuilder<T> setOkStatus(){
-			status = ResponseStatus.OK;
-			return this;
-		}
-
 		public Response<T> build(){
 			return new Response<>(header,data,status);
 		}

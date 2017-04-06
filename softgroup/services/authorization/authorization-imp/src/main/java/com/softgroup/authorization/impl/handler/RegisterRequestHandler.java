@@ -50,7 +50,7 @@ public class RegisterRequestHandler
         RegistrationCacheData cacheData = modelMapper.map(msg.getData(),RegistrationCacheData.class);
 
         if (checkIfExist(cacheData.getPhoneNumber())){
-            return MessageFactory.createResponse(msg, null, ResponseStatus.NOT_ACCEPTABLE);
+            return MessageFactory.createResponse(msg, ResponseStatus.NOT_ACCEPTABLE);
         }
 
         String authCode = createAuthCode();
@@ -59,7 +59,7 @@ public class RegisterRequestHandler
 
         RegisterResponse responseData = new RegisterResponse(registrationRequestUuid,REGISTER_TIMEOUT,authCode);
 
-        return MessageFactory.createResponseWithOk(msg, responseData);
+        return MessageFactory.createResponse(msg, responseData);
     }
 
     private String putToCache(RegistrationCacheData cacheData){
