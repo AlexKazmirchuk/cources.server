@@ -12,7 +12,7 @@ import com.softgroup.common.dao.impl.services.ProfileService;
 import com.softgroup.common.jwt.api.TokenService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.protocol.ResponseStatusType;
 import com.softgroup.common.protocol.factories.MessageFactory;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +66,7 @@ public class SmsConfirmRequestHandler
 
             return MessageFactory.createResponse(msg,responseData);
         } else {
-            return MessageFactory.createResponse(msg, ResponseStatus.NOT_ACCEPTABLE );
+            return MessageFactory.createResponse(msg, ResponseStatusType.NOT_ACCEPTABLE );
         }
     }
 

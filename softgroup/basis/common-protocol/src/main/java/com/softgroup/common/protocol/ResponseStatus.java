@@ -1,28 +1,17 @@
 package com.softgroup.common.protocol;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
-@JsonIgnoreProperties( { "declaring_class" })
-public enum  ResponseStatus {
-
-    OK(200,"ok"),
-
-    BAD_REQUEST(400,"Bad request"),
-    FORBIDDEN(403,"Forbidden"),
-    NOT_FOUND(404,"Not fount"),
-    NOT_ACCEPTABLE(406,"Not acceptable"),
-    UNPROCESSABLE_ENTITY(422,"Unprocessable Entity"),
-    TOO_MANY_REQUESTS(429,"Too Many Requests"),
-
-    INTERNAL_SERVER_ERROR(500,"internal server error"),
-    NOT_IMPLEMENTED(501,"not implemented");
+public class ResponseStatus implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Integer code;
     private String message;
 
-    private ResponseStatus(Integer code, String message) {
+    public ResponseStatus() {
+    }
+
+    public ResponseStatus(Integer code, String message) {
         this.code = code;
         this.message = message;
     }

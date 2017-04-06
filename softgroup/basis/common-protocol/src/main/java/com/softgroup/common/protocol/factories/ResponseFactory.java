@@ -13,7 +13,7 @@ public class ResponseFactory {
         return new Response.ResponseBuilder<T>()
                 .setHeader(header)
                 .setData(data)
-                .setStatus(ResponseStatus.OK)
+                .setStatus(new ResponseStatus(200, "ok"))
                 .build();
     }
 

@@ -15,9 +15,15 @@ public class MessageFactory {
                 ,responseData);
     }
 
-    public static <T extends ResponseData> Response<T> createResponse(Request request, ResponseStatus status){
+    public static <T extends ResponseData> Response<T> createResponse(Request request, ResponseStatusType statusType){
         return ResponseFactory.createResponse(
                         ActionHeaderFactory.createHeader(request.getHeader())
-                        ,status);
+                        ,new ResponseStatus(statusType.getCode(), statusType.getMessage()));
+    }
+
+    public static <T extends ResponseData> Response<T> createResponse(Request request, Integer statusCode, String statusMessage){
+        return ResponseFactory.createResponse(
+                ActionHeaderFactory.createHeader(request.getHeader())
+                ,new ResponseStatus(statusCode, statusMessage));
     }
 }
