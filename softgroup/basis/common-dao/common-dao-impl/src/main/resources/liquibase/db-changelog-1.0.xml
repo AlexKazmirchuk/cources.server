@@ -60,5 +60,18 @@
             </sql>
         </rollback>
     </changeSet>
+    
+    <changeSet id="contacts-table-creating-4" author="AlexKazmirchuk">
+        <createTable tableName="contacts">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="phone" type="varchar(255)"/>
+            <column name="profile_id" type="varchar(255)">
+                <constraints nullable="false" foreignKeyName="fk_contacts_profiles" references="profiles(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
 
 </databaseChangeLog>
