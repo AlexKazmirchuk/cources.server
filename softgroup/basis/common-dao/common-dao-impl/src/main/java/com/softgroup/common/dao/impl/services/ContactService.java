@@ -12,4 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ContactService extends
         CommonService<ContactEntity,ContactRepository> {
+
+    public ContactEntity findByPhone(String phone){
+        return getRepository().findByPhone(phone);
+    }
 }
