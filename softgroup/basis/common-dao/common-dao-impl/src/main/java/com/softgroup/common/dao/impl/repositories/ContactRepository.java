@@ -8,4 +8,7 @@ import com.softgroup.common.dao.api.entities.ContactEntity;
  */
 
 public interface ContactRepository extends BaseRepository<ContactEntity> {
+
+    ContactEntity findByPhone(String phone);
+
 }
