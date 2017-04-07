@@ -7,27 +7,16 @@ package com.softgroup.profile.api.dto;
 
 public class ContactDTO {
 
-    private String id;
-
     private String name;
 
     private String phone;
 
-    public ContactDTO(String id, String name, String phone) {
-        this.id = id;
+    public ContactDTO(String name, String phone) {
         this.name = name;
         this.phone = phone;
     }
 
     public ContactDTO() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
