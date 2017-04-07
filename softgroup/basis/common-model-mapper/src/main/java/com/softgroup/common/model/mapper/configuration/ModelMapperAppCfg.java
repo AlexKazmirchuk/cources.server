@@ -2,6 +2,7 @@ package com.softgroup.common.model.mapper.configuration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 
 /**
  * @author AlexKazmirchuk
@@ -9,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-@ComponentScan("com.softgroup.common.model.mapper")
+@ComponentScan(basePackages = "com.softgroup.common.model.mapper",
+        excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION,
+                value = Configuration.class))
 public class ModelMapperAppCfg {
 }
