@@ -1,11 +1,13 @@
 package com.softgroup.common.validation.impl;
 
 import com.softgroup.common.exceptions.InvalidRequestException;
+import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.validation.api.RequestValidationService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -22,7 +24,7 @@ public class RequestValidationServiceImpl implements RequestValidationService {
 
     private List<String> types;
 
-    private Map<String,List<String>> handlerMap;
+    private Map<String,List<String>> handlerMap = new HashMap<>();
 
     @PostConstruct
     private void init(){
@@ -48,11 +50,22 @@ public class RequestValidationServiceImpl implements RequestValidationService {
 
     @Override
     public void validateRequest(Request<?> request) throws InvalidRequestException {
-        // todo implement later
+        if (request == null){
+            throw new IllegalArgumentException();
+        }
+
+        validateHeaderExisting(request.getHeader());
         validateType(request.getHeader().getType());
         validateCommand(request.getHeader().getType(),request.getHeader().getCommand());
         validateUuid(request.getHeader().getUuid());
+        validateVersion(request.getHeader().getVersion());
+        validateOriginUuid(request.getHeader().getOriginUuid());
+    }
 
+    private void validateHeaderExisting(ActionHeader header) throws InvalidRequestException{
+        if (header == null){
+            throw new InvalidRequestException("Invalid header");
+        }
     }
 
     private void validateType(String type) throws InvalidRequestException{
@@ -69,10 +82,21 @@ public class RequestValidationServiceImpl implements RequestValidationService {
 
     private void validateUuid(String uuid) throws InvalidRequestException{
         try {
-            UUID result = UUID.fromString(uuid);
+            UUID.fromString(uuid);
         } catch (IllegalArgumentException e){
             throw new InvalidRequestException("Invalid uuid");
         }
     }
 
+    private void validateVersion(String version) throws InvalidRequestException{
+        if (version == null){
+            throw new InvalidRequestException("Invalid version");
+        }
+    }
+
+    private void validateOriginUuid(String originUuid) throws InvalidRequestException{
+        if (originUuid != null){
+            throw new InvalidRequestException("originUuid must be null");
+        }
+    }
 }
