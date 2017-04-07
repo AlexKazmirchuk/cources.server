@@ -1,6 +1,6 @@
 package com.softgroup.common.jwt.api;
 
-import com.softgroup.common.jwt.exceptions.InvalidTokenException;
+import com.softgroup.common.exceptions.InvalidTokenException;
 
 /**
  * @author AlexKazmirchuk

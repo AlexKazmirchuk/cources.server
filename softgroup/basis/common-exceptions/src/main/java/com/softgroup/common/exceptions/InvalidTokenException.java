@@ -1,4 +1,4 @@
-package com.softgroup.common.jwt.exceptions;
+package com.softgroup.common.exceptions;
 
 /**
  * @author AlexKazmirchuk

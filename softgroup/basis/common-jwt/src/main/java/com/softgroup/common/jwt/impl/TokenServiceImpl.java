@@ -2,7 +2,7 @@ package com.softgroup.common.jwt.impl;
 
 import com.softgroup.common.jwt.api.TokenService;
 import com.softgroup.common.jwt.api.TokenType;
-import com.softgroup.common.jwt.exceptions.InvalidTokenException;
+import com.softgroup.common.exceptions.InvalidTokenException;
 import io.jsonwebtoken.*;
 import org.springframework.stereotype.Service;
 
