@@ -10,16 +10,24 @@ import com.softgroup.common.protocol.*;
 public class MessageFactory {
 
     public static<T extends ResponseData> Response<T> createResponse(Request request, T responseData){
-        return ResponseFactory.createResponse(new ActionHeader(request.getHeader()),responseData);
+        return new Response.ResponseBuilder<T>()
+                .setHeader(new ActionHeader(request.getHeader()))
+                .setData(responseData)
+                .setStatus(new ResponseStatus(ResponseStatusType.OK.getCode(), ResponseStatusType.OK.getMessage()))
+                .build();
     }
 
     public static <T extends ResponseData> Response<T> createResponse(Request request, ResponseStatusType statusType){
-        return ResponseFactory.createResponse(new ActionHeader(request.getHeader())
-                                             ,new ResponseStatus(statusType.getCode(), statusType.getMessage()));
+        return new Response.ResponseBuilder<T>()
+                .setHeader(new ActionHeader(request.getHeader()))
+                .setStatus(new ResponseStatus(statusType.getCode(), statusType.getMessage()))
+                .build();
     }
 
     public static <T extends ResponseData> Response<T> createResponse(Request request, Integer statusCode, String statusMessage){
-        return ResponseFactory.createResponse(new ActionHeader(request.getHeader())
-                                             ,new ResponseStatus(statusCode, statusMessage));
+        return new Response.ResponseBuilder<T>()
+                .setHeader(new ActionHeader(request.getHeader()))
+                .setStatus(new ResponseStatus(statusCode, statusMessage))
+                .build();
     }
 }
