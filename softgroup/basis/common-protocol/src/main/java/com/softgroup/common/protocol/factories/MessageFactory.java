@@ -30,4 +30,11 @@ public class MessageFactory {
                 .setStatus(new ResponseStatus(statusCode, statusMessage))
                 .build();
     }
+
+    public static <T extends RequestData> Request<T> createRequest(ActionHeader header, T data){
+        return new Request.RequestBuilder<T>()
+                .setHeader(header)
+                .setData(data)
+                .build();
+    }
 }
