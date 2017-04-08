@@ -49,10 +49,6 @@ public class RegisterRequestHandler
 
         RegistrationCacheData cacheData = modelMapper.map(msg.getData(),RegistrationCacheData.class);
 
-        if (checkIfExist(cacheData.getPhoneNumber())){
-            return MessageFactory.createResponse(msg, ResponseStatusType.NOT_ACCEPTABLE);
-        }
-
         String authCode = createAuthCode();
         cacheData.setAuthCode(authCode);
         String registrationRequestUuid = putToCache(cacheData);
@@ -66,12 +62,6 @@ public class RegisterRequestHandler
         String key = UUID.randomUUID().toString();
         cacheService.save(key,cacheData);
         return key;
-    }
-
-    private boolean checkIfExist(String phoneNumber){
-        if (profileService.findByPhoneNumber(phoneNumber) == null){
-            return false;
-        } else return true;
     }
 
     private String createAuthCode(){

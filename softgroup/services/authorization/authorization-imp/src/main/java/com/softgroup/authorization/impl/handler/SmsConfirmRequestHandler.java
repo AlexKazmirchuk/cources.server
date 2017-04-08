@@ -54,36 +54,74 @@ public class SmsConfirmRequestHandler
 
         if (regData != null && (regData.getAuthCode().equals(authCode))){
 
-            ProfileEntity profile = createProfile(regData);
-            profile = profileService.add(profile);
-            DeviceEntity device = createDevice(regData);
-            device.setProfile(profile);
-            deviceService.add(device);
+            ProfileEntity profile = processProfile(regData);
+            DeviceEntity device = processDevice(profile,regData);
 
             String deviceToken = tokenService.createDeviceToken(profile.getId(),device.getId());
 
-            SmsConfirmResponse responseData = new SmsConfirmResponse(deviceToken);
-
-            return MessageFactory.createResponse(msg,responseData);
+            return MessageFactory.createResponse(msg,new SmsConfirmResponse(deviceToken));
         } else {
             return MessageFactory.createResponse(msg, ResponseStatusType.NOT_ACCEPTABLE );
         }
     }
 
-    private ProfileEntity createProfile(RegistrationCacheData regData){
+    private ProfileEntity processProfile(RegistrationCacheData regData){
+        if(checkIfProfileExist(regData.getPhoneNumber())){
+            return updateProfile(regData.getPhoneNumber());
+        } else {
+            return  createAndSaveProfile(regData);
+        }
+    }
+
+    private DeviceEntity processDevice(ProfileEntity profile, RegistrationCacheData regData){
+        if (checkIfDeviceExist(profile,regData.getDeviceID())){
+            return updateDevice(profile,regData.getDeviceID());
+        } else {
+            return createAndSaveDevice(regData,profile);
+        }
+    }
+
+    private boolean checkIfProfileExist(String phoneNumber){
+        if (profileService.findByPhoneNumber(phoneNumber) == null){
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkIfDeviceExist(ProfileEntity profile, String deviceID){
+        if (deviceService.findByProfileAndDeviceID(profile,deviceID) == null){
+            return false;
+        }
+        return true;
+    }
+
+    private ProfileEntity createAndSaveProfile(RegistrationCacheData regData){
         ProfileEntity profile = new ProfileEntity();
         profile.setCreateDateTime(System.currentTimeMillis());
         profile.setPhoneNumber(regData.getPhoneNumber());
         profile.setUpdateDateTime(System.currentTimeMillis());
+        return profileService.add(profile);
+    }
+
+    private ProfileEntity updateProfile(String phoneNumber){
+        ProfileEntity profile = profileService.findByPhoneNumber(phoneNumber);
+        profile.setUpdateDateTime(System.currentTimeMillis());
         return profile;
     }
 
-    private DeviceEntity createDevice(RegistrationCacheData regData){
+    private DeviceEntity createAndSaveDevice(RegistrationCacheData regData, ProfileEntity profile){
         DeviceEntity device = new DeviceEntity();
         device.setLocale(regData.getLocaleCode());
         device.setDeviceID(regData.getDeviceID());
         device.setLastConfirmationDate(System.currentTimeMillis());
-        return device;
+        device.setProfile(profile);
+        return deviceService.add(device);
+    }
+
+    private DeviceEntity updateDevice(ProfileEntity profile, String deviceID){
+        DeviceEntity device = deviceService.findByProfileAndDeviceID(profile,deviceID);
+        device.setLastConfirmationDate(System.currentTimeMillis());
+        return deviceService.edit(device);
     }
 
 }
