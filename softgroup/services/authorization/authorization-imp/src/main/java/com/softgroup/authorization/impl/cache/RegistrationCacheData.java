@@ -11,25 +11,22 @@ public class RegistrationCacheData implements Serializable {
 
     private static final long serialVersionUID = -7589939630840486542L;
 
-    private Integer registrationTimeoutSec;
-    private Integer authCode;
+    private String authCode;
     private String deviceID;
     private String phoneNumber;
-    private String locale;
+    private String localeCode;
 
     public RegistrationCacheData() {
     }
 
-    public RegistrationCacheData(Integer registrationTimeoutSec,
-                                 Integer authCode,
+    public RegistrationCacheData(String authCode,
                                  String deviceID,
                                  String phoneNumber,
-                                 String locale) {
-        this.registrationTimeoutSec = registrationTimeoutSec;
+                                 String localeCode) {
         this.authCode = authCode;
         this.deviceID = deviceID;
         this.phoneNumber = phoneNumber;
-        this.locale = locale;
+        this.localeCode = localeCode;
     }
 
     public String getPhoneNumber() {
@@ -40,12 +37,12 @@ public class RegistrationCacheData implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getLocale() {
-        return locale;
+    public String getLocaleCode() {
+        return localeCode;
     }
 
-    public void setLocale(String locale) {
-        this.locale = locale;
+    public void setLocaleCode(String localeCode) {
+        this.localeCode = localeCode;
     }
 
     public String getDeviceID() {
@@ -56,19 +53,11 @@ public class RegistrationCacheData implements Serializable {
         this.deviceID = deviceID;
     }
 
-    public Integer getRegistrationTimeoutSec() {
-        return registrationTimeoutSec;
-    }
-
-    public void setRegistrationTimeoutSec(Integer registrationTimeoutSec) {
-        this.registrationTimeoutSec = registrationTimeoutSec;
-    }
-
-    public Integer getAuthCode() {
+    public String getAuthCode() {
         return authCode;
     }
 
-    public void setAuthCode(Integer authCode) {
+    public void setAuthCode(String authCode) {
         this.authCode = authCode;
     }
 
@@ -77,34 +66,31 @@ public class RegistrationCacheData implements Serializable {
         if (this == o) return true;
         if (!(o instanceof RegistrationCacheData)) return false;
 
-        RegistrationCacheData that = (RegistrationCacheData) o;
+        RegistrationCacheData cacheData = (RegistrationCacheData) o;
 
-        if (registrationTimeoutSec != null ? !registrationTimeoutSec.equals(that.registrationTimeoutSec) : that.registrationTimeoutSec != null)
+        if (authCode != null ? !authCode.equals(cacheData.authCode) : cacheData.authCode != null) return false;
+        if (deviceID != null ? !deviceID.equals(cacheData.deviceID) : cacheData.deviceID != null) return false;
+        if (phoneNumber != null ? !phoneNumber.equals(cacheData.phoneNumber) : cacheData.phoneNumber != null)
             return false;
-        if (authCode != null ? !authCode.equals(that.authCode) : that.authCode != null) return false;
-        if (deviceID != null ? !deviceID.equals(that.deviceID) : that.deviceID != null) return false;
-        if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
-        return locale != null ? locale.equals(that.locale) : that.locale == null;
+        return localeCode != null ? localeCode.equals(cacheData.localeCode) : cacheData.localeCode == null;
     }
 
     @Override
     public int hashCode() {
-        int result = registrationTimeoutSec != null ? registrationTimeoutSec.hashCode() : 0;
-        result = 31 * result + (authCode != null ? authCode.hashCode() : 0);
+        int result = authCode != null ? authCode.hashCode() : 0;
         result = 31 * result + (deviceID != null ? deviceID.hashCode() : 0);
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-        result = 31 * result + (locale != null ? locale.hashCode() : 0);
+        result = 31 * result + (localeCode != null ? localeCode.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "RegistrationCacheData{" +
-                "registrationTimeoutSec=" + registrationTimeoutSec +
-                ", authCode=" + authCode +
+                "authCode='" + authCode + '\'' +
                 ", deviceID='" + deviceID + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", locale='" + locale + '\'' +
+                ", locale='" + localeCode + '\'' +
                 '}';
     }
 }

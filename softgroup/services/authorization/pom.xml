@@ -29,6 +29,21 @@
 				<artifactId>common-cache</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.softgroup</groupId>
+				<artifactId>common-jwt</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.softgroup</groupId>
+				<artifactId>common-dao-impl</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.softgroup</groupId>
+				<artifactId>common-model-mapper</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

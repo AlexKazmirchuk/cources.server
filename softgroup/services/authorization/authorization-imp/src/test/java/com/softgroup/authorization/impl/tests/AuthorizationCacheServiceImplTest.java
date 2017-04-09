@@ -1,6 +1,7 @@
 package com.softgroup.authorization.impl.tests;
 
 import com.softgroup.authorization.impl.cache.AuthorizationCacheService;
+import com.softgroup.authorization.impl.cache.AuthorizationCacheServiceImpl;
 import com.softgroup.authorization.impl.cache.RegistrationCacheData;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,26 +14,26 @@ import static org.hamcrest.core.Is.is;
  * @author AlexKazmirchuk
  * @since 20.03.17.
  */
-public class AuthorizationCacheServiceTest {
+public class AuthorizationCacheServiceImplTest {
 
     private RegistrationCacheData cacheData1;
     private RegistrationCacheData cacheData2;
 
-    private AuthorizationCacheService cacheService = new AuthorizationCacheService();
+    private AuthorizationCacheService cacheService = new AuthorizationCacheServiceImpl();
 
     @Before
     public void init(){
         cacheData1 = new RegistrationCacheData();
         cacheData1 = new RegistrationCacheData();
-        cacheData1.setAuthCode(233);
+        cacheData1.setAuthCode("233");
         cacheData1.setDeviceID("sffdag34434");
-        cacheData1.setLocale("en_EN");
+        cacheData1.setLocaleCode("en_EN");
         cacheData1.setPhoneNumber("35663434");
 
         cacheData2 = new RegistrationCacheData();
-        cacheData2.setAuthCode(243433);
+        cacheData2.setAuthCode("243433");
         cacheData2.setDeviceID("sdkl4903");
-        cacheData2.setLocale("ru_RU");
+        cacheData2.setLocaleCode("ru_RU");
         cacheData2.setPhoneNumber("0500403443");
     }
 

@@ -12,4 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProfileService extends
         CommonService<ProfileEntity,ProfileRepository> {
+
+    public ProfileEntity findByPhoneNumber(String phoneNumber){
+        return getRepository().findByPhoneNumber(phoneNumber);
+    }
 }

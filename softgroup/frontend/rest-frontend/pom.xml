@@ -12,7 +12,7 @@
     <artifactId>rest-frontend</artifactId>
 
     <properties>
-        <spring.core.version>4.2.5.RELEASE</spring.core.version>
+        <spring.core.version>4.3.5.RELEASE</spring.core.version>
         <spring.web.version>4.2.5.RELEASE</spring.web.version>
     </properties>
 
@@ -46,6 +46,11 @@
         <dependency>
             <groupId>com.softgroup</groupId>
             <artifactId>common-jwt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.softgroup</groupId>
+            <artifactId>common-model-mapper</artifactId>
         </dependency>
 
         <dependency>
