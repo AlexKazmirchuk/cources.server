@@ -6,13 +6,22 @@ import com.softgroup.profile.api.dto.ProfileDTO;
 import java.util.List;
 
 /**
- * Created by sasha on 24.02.17.
+ * @author AlexKazmirchuk
+ * @since 24.02.17.
  */
+
 public class GetContactProfilesResponse implements ResponseData {
 
     private static final long serialVersionUID = 7182031214980471450L;
 
     private List<ProfileDTO> profiles;
+
+    public GetContactProfilesResponse(List<ProfileDTO> profiles) {
+        this.profiles = profiles;
+    }
+
+    public GetContactProfilesResponse() {
+    }
 
     public List<ProfileDTO> getProfiles() {
         return profiles;
