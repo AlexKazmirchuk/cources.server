@@ -14,6 +14,13 @@ public class GetOtherProfilesResponse implements ResponseData {
 
     private List<ProfileDTO> profiles;
 
+    public GetOtherProfilesResponse(List<ProfileDTO> profiles) {
+        this.profiles = profiles;
+    }
+
+    public GetOtherProfilesResponse() {
+    }
+
     public List<ProfileDTO> getProfiles() {
         return profiles;
     }
