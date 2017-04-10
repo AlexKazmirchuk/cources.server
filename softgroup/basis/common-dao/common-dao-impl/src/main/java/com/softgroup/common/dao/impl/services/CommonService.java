@@ -40,4 +40,8 @@ public abstract class CommonService
     public R getRepository() {
         return repository;
     }
+
+    public List<E> getAllByIds(List<String> ids){
+        return repository.findAll(ids);
+    }
 }
