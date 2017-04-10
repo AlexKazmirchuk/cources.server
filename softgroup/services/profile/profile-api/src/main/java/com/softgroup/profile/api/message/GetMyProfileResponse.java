@@ -12,6 +12,13 @@ public class GetMyProfileResponse implements ResponseData {
 
     private ProfileDTO profile;
 
+    public GetMyProfileResponse(ProfileDTO profile) {
+        this.profile = profile;
+    }
+
+    public GetMyProfileResponse() {
+    }
+
     public ProfileDTO getProfile() {
         return profile;
     }
