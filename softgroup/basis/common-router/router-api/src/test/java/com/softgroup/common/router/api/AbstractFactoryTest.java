@@ -1,10 +1,17 @@
 package com.softgroup.common.router.api;
 
+import com.softgroup.common.protocol.Request;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import static com.softgroup.common.router.api.util.Util.createRequest;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.hamcrest.core.IsNull.nullValue;
 
 /**
  * @author AlexKazmirchuk
@@ -18,10 +25,54 @@ public class AbstractFactoryTest {
     @Autowired
     private AbstractFactory<RequestHandler> requestHandlerFactory;
 
+    @Autowired
+    private AbstractFactory<RouterHandler> routerHandlerFactory;
+
     @Test
-    public void someTest(){
-        System.out.println("working");
+    public void requestHandlerFactoryGetRouteKeyMethodTest(){
+        assertThat(requestHandlerFactory, notNullValue());
+
+        String routeKey = requestHandlerFactory.getRouteKey(createRequest("test_command_one",null));
+        assertThat(routeKey,is("test_command_one"));
+        routeKey = requestHandlerFactory.getRouteKey(createRequest("test_command_two",null));
+        assertThat(routeKey,is("test_command_two"));
+        routeKey = requestHandlerFactory.getRouteKey(createRequest("",null));
+        assertThat(routeKey,is(""));
+        routeKey = requestHandlerFactory.getRouteKey(createRequest(null,null));
+        assertThat(routeKey,nullValue());
     }
 
+    @Test
+    public void routerHandlerFactoryGetRouteKeyMethodTest(){
+        assertThat(routerHandlerFactory, notNullValue());
 
+        String routeKey = routerHandlerFactory.getRouteKey(createRequest(null,"test_type_one"));
+        assertThat(routeKey,is("test_type_one"));
+        routeKey = routerHandlerFactory.getRouteKey(createRequest(null,"test_type_two"));
+        assertThat(routeKey,is("test_type_two"));
+        routeKey = routerHandlerFactory.getRouteKey(createRequest(null,""));
+        assertThat(routeKey,is(""));
+        routeKey = routerHandlerFactory.getRouteKey(createRequest(null,null));
+        assertThat(routeKey,nullValue());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void requestHandlerFactoryGetRouteKeyMethodWithNullParameter(){
+        requestHandlerFactory.getRouteKey(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void requestHandlerFactoryGetRouteKeyMethodWithNullHeader(){
+        requestHandlerFactory.getRouteKey(new Request<>());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void routerHandlerFactoryGetRouteKeyMethodWithNullParameter(){
+        routerHandlerFactory.getRouteKey(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void routerHandlerFactoryGetRouteKeyMethodWithNullHeader(){
+        routerHandlerFactory.getRouteKey(new Request<>());
+    }
 }
