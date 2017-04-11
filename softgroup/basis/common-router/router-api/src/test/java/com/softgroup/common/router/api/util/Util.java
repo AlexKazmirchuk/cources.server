@@ -10,6 +10,19 @@ import com.softgroup.common.protocol.Response;
  */
 
 public class Util {
+
+    public static final Request<?> REQUEST_WITH_TEST_COMMAND_ONE =
+            createRequest("test_command_one",null);
+
+    public static final Request<?> REQUEST_WITH_TEST_COMMAND_TWO =
+            createRequest("test_command_two",null);
+
+    public static final Request<?> REQUEST_WITH_TEST_TYPE_ONE =
+            createRequest(null,"test_type_one");
+
+    public static final Request<?> REQUEST_WITH_TEST_TYPE_TWO =
+            createRequest(null,"test_type_two");
+
     public static Request<?> createRequest(String command, String type){
         ActionHeader header = ActionHeader.newBuilder()
                 .setCommand(command)
