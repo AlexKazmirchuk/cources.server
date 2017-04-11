@@ -1,6 +1,7 @@
 package com.softgroup.common.router.api;
 
 import com.softgroup.common.protocol.Request;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.core.IsNull.nullValue;
+import static org.mockito.Mockito.*;
 
 /**
  * @author AlexKazmirchuk
@@ -28,6 +30,16 @@ public class AbstractFactoryTest {
 
     @Autowired
     private AbstractFactory<RouterHandler> routerHandlerFactory;
+
+    private AbstractFactory<RequestHandler> spiedRequestHandlerFactory;
+
+    private AbstractFactory<RouterHandler> spiedRouterHandlerFactory;
+
+    @Before
+    public void init(){
+        spiedRequestHandlerFactory = spy(requestHandlerFactory);
+        spiedRouterHandlerFactory = spy(routerHandlerFactory);
+    }
 
     @Test
     public void requestHandlerFactoryGetRouteKeyMethodTest(){
@@ -143,5 +155,21 @@ public class AbstractFactoryTest {
     @Test(expected = IllegalArgumentException.class)
     public void routerHandlerFactoryGetHandlerMethodWithNullHeaderTest(){
         routerHandlerFactory.getHandler(new Request<>());
+    }
+
+    @Test
+    public void verifyCallMethodsOnRequestHandlerFactory(){
+        Request request = createRequest("test_command_one",null);
+        spiedRequestHandlerFactory.getRouteKey(request);
+        spiedRequestHandlerFactory.getHandler(request);
+        verify(spiedRequestHandlerFactory,times(2)).getRouteKey(request);
+    }
+
+    @Test
+    public void verifyCallMethodsOnRouterHandlerFactory(){
+        Request request = createRequest(null,"test_type_one");
+        spiedRouterHandlerFactory.getRouteKey(request);
+        spiedRouterHandlerFactory.getHandler(request);
+        verify(spiedRouterHandlerFactory,times(2)).getRouteKey(request);
     }
 }
