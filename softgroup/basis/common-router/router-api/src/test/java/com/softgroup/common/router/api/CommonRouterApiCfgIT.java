@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.softgroup.common.router.api.util.Util.createRequest;
+import static com.softgroup.common.router.api.util.Util.createResponse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -22,8 +24,16 @@ public class CommonRouterApiCfgIT {
     public List<RequestHandler> getRequestHandlerList(){
         RequestHandler handlerOne = mock(RequestHandler.class);
         when(handlerOne.getName()).thenReturn("test_command_one");
+        when(handlerOne.handle(createRequest("test_command_one",null)))
+        .thenReturn(createResponse("test_command_one",null));
+        when(handlerOne.handle(null)).thenThrow(new IllegalArgumentException());
+
         RequestHandler handlerTwo = mock(RequestHandler.class);
         when(handlerTwo.getName()).thenReturn("test_command_two");
+        when(handlerTwo.handle(createRequest("test_command_two",null)))
+                .thenReturn(createResponse("test_command_two",null));
+        when(handlerTwo.handle(null)).thenThrow(new IllegalArgumentException());
+
         List<RequestHandler> handlers = new ArrayList<>();
         handlers.add(handlerOne);
         handlers.add(handlerTwo);
@@ -34,8 +44,16 @@ public class CommonRouterApiCfgIT {
     public List<RouterHandler> getRouterHandlerList(){
         RouterHandler handlerOne = mock(RouterHandler.class);
         when(handlerOne.getName()).thenReturn("test_type_one");
+        when(handlerOne.handle(createRequest(null,"test_type_one")))
+                .thenReturn(createResponse(null,"test_type_one"));
+        when(handlerOne.handle(null)).thenThrow(new IllegalArgumentException());
+
         RouterHandler handlerTwo = mock(RouterHandler.class);
         when(handlerTwo.getName()).thenReturn("test_type_two");
+        when(handlerTwo.handle(createRequest(null,"test_type_two")))
+                .thenReturn(createResponse(null,"test_type_two"));
+        when(handlerTwo.handle(null)).thenThrow(new IllegalArgumentException());
+
         List<RouterHandler> handlers = new ArrayList<>();
         handlers.add(handlerOne);
         handlers.add(handlerTwo);
@@ -47,6 +65,7 @@ public class CommonRouterApiCfgIT {
         return new AbstractFactory<RequestHandler>() {
             @Override
             public String getRouteKey(Request<?> msg) {
+                if (msg == null || msg.getHeader() == null) throw new IllegalArgumentException();
                 return msg.getHeader().getCommand();
             }
         };
@@ -56,6 +75,7 @@ public class CommonRouterApiCfgIT {
         return new AbstractFactory<RouterHandler>() {
             @Override
             public String getRouteKey(Request<?> msg) {
+                if (msg == null || msg.getHeader() == null) throw new IllegalArgumentException();
                 return msg.getHeader().getType();
             }
         };
