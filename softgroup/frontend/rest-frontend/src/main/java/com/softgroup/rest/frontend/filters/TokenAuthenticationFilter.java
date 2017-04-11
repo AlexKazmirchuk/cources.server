@@ -1,7 +1,7 @@
 package com.softgroup.rest.frontend.filters;
 
 import com.softgroup.common.jwt.api.TokenService;
-import com.softgroup.common.jwt.exceptions.InvalidTokenException;
+import com.softgroup.common.exceptions.InvalidTokenException;
 import com.softgroup.rest.frontend.configuration.security.TokenAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

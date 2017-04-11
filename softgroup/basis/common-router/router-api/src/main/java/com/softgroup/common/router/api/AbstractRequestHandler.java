@@ -1,10 +1,8 @@
 package com.softgroup.common.router.api;
 
 import com.softgroup.common.datamapper.DataMapper;
-import com.softgroup.common.protocol.Request;
-import com.softgroup.common.protocol.RequestData;
-import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.ResponseData;
+import com.softgroup.common.exceptions.MapperException;
+import com.softgroup.common.protocol.*;
 import com.softgroup.common.protocol.factories.MessageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,8 +22,14 @@ public abstract class AbstractRequestHandler
 
 	@Override
 	public Response<R> handle(Request<?> msg) {
-		Request<T> request = MessageFactory.createRequest(msg.getHeader(),
-				mapper.convert(msg.getData(), genericClass));
+		T requestData;
+		Request<T> request;
+		try {
+			requestData = mapper.convert(msg.getData(), genericClass);
+			request = MessageFactory.createRequest(msg.getHeader(),requestData);
+		} catch (MapperException e){
+			return MessageFactory.createResponse(msg,ResponseStatusType.BAD_REQUEST);
+		}
 		return doHandle(request);
 	}
 

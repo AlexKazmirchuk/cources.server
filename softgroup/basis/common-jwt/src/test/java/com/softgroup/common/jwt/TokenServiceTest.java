@@ -2,7 +2,7 @@ package com.softgroup.common.jwt;
 
 import com.softgroup.common.jwt.api.TokenService;
 import com.softgroup.common.jwt.api.TokenType;
-import com.softgroup.common.jwt.exceptions.InvalidTokenException;
+import com.softgroup.common.exceptions.InvalidTokenException;
 import com.softgroup.common.jwt.impl.TokenServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
