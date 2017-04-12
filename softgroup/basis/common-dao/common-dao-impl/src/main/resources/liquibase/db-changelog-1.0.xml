@@ -4,71 +4,53 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <changeSet id="profile_settings-table-creating-1" author="AlexKazmirchuk">
-        <sql>
-            CREATE TABLE `profile_settings` (
-            `id` varchar(255) NOT NULL,
-            `settings_data` varchar(255) DEFAULT NULL,
-            PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-        </sql>
-        <rollback>
-            <sql>
-                DROP TABLE `profile_settings`;
-            </sql>
-        </rollback>
+        <createTable tableName="profile_settings">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="settings_data" type="varchar(255)"/>
+        </createTable>
     </changeSet>
 
     <changeSet id="profiles-table-creating-2" author="AlexKazmirchuk">
-        <sql>
-            CREATE TABLE `profiles` (
-            `id` varchar(255) NOT NULL,
-            `avatar_uri` varchar(255) DEFAULT NULL,
-            `create_date_time` bigint(20) DEFAULT NULL,
-            `name` varchar(255) DEFAULT NULL,
-            `phone_number` varchar(255) DEFAULT NULL,
-            `status` varchar(255) DEFAULT NULL,
-            `update_date_time` bigint(20) DEFAULT NULL,
-            `profile_settings_id` varchar(255) DEFAULT NULL,
-            PRIMARY KEY (`id`),
-            KEY `FK_m4a9ax1hk187tmspmkx4s16qg` (`profile_settings_id`),
-            CONSTRAINT `FK_m4a9ax1hk187tmspmkx4s16qg` FOREIGN KEY (`profile_settings_id`) REFERENCES `profile_settings` (`id`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-        </sql>
-        <rollback>
-            <sql>
-                DROP TABLE `profiles`;
-            </sql>
-        </rollback>
+        <createTable tableName="profiles">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="avatar_uri" type="varchar(255)"/>
+            <column name="create_date_time" type="bigint(20)"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="phone_number" type="varchar(255)"/>
+            <column name="status" type="varchar(255)"/>
+            <column name="update_date_time" type="bigint(20)"/>
+            <column name="profile_settings_id" type="varchar(36)">
+                <constraints foreignKeyName="fk_profiles_profile_settings" references="profile_settings(id)"/>
+            </column>
+        </createTable>
     </changeSet>
 
     <changeSet id="devices-table-creating-3" author="AlexKazmirchuk">
-        <sql>
-            CREATE TABLE `devices` (
-            `id` varchar(255) NOT NULL,
-            `device_id` varchar(255) DEFAULT NULL,
-            `last_confirmation_date` bigint(20) DEFAULT NULL,
-            `locale` varchar(255) DEFAULT NULL,
-            `profile_id` varchar(255) DEFAULT NULL,
-            PRIMARY KEY (`id`),
-            KEY `FK_me5fpj4xdeypba4djjaktrc2v` (`profile_id`),
-            CONSTRAINT `FK_me5fpj4xdeypba4djjaktrc2v` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`id`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-        </sql>
-        <rollback>
-            <sql>
-                DROP TABLE `devices`;
-            </sql>
-        </rollback>
+        <createTable tableName="devices">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="device_id" type="varchar(255)"/>
+            <column name="last_confirmation_date" type="bigint(20)"/>
+            <column name="locale" type="varchar(255)"/>
+            <column name="profile_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_devices_profiles" references="profiles(id)"/>
+            </column>
+        </createTable>
     </changeSet>
     
     <changeSet id="contacts-table-creating-4" author="AlexKazmirchuk">
         <createTable tableName="contacts">
-            <column name="id" type="varchar(255)">
+            <column name="id" type="varchar(36)">
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="varchar(255)"/>
             <column name="phone" type="varchar(255)"/>
-            <column name="profile_id" type="varchar(255)">
+            <column name="profile_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_contacts_profiles" references="profiles(id)"/>
             </column>
         </createTable>
