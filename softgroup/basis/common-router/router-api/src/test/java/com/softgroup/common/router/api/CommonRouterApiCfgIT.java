@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.softgroup.common.router.api.util.Util.*;
+import static com.softgroup.common.router.api.util.TestUtil.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

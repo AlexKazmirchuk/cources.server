@@ -9,7 +9,7 @@ import com.softgroup.common.protocol.Response;
  * @since 11.04.17.
  */
 
-public class Util {
+public class TestUtil {
 
     public static final Request<?> REQUEST_WITH_TEST_COMMAND_ONE =
             createRequest("test_command_one",null);
