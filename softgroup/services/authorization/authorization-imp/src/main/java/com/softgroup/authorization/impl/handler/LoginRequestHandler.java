@@ -34,6 +34,8 @@ public class LoginRequestHandler
     @Override
     public Response<LoginResponse> doHandle(Request<LoginRequest> msg) {
         try {
+            if (msg.getData() == null) return MessageFactory.createResponse(msg,ResponseStatusType.BAD_REQUEST);
+
             String deviceToken = msg.getData().getDeviceToken();
             tokenService.validateDeviceToken(deviceToken);
             String sessionToken = tokenService.createSessionToken(
