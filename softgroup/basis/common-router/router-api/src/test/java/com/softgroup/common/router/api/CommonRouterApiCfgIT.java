@@ -1,6 +1,10 @@
 package com.softgroup.common.router.api;
 
 import com.softgroup.common.protocol.Request;
+import com.softgroup.common.protocol.Response;
+import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.router.api.util.TestRequestData;
+import com.softgroup.common.router.api.util.TestResponseData;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -86,6 +90,22 @@ public class CommonRouterApiCfgIT {
             @Override
             public String getName() {
                 return "test_router_handler";
+            }
+        };
+    }
+
+    @Bean
+    public AbstractRequestHandler<TestRequestData,TestResponseData> getRequestHandler(){
+        return new AbstractRequestHandler<TestRequestData, TestResponseData>() {
+
+            @Override
+            public Response<TestResponseData> doHandle(Request<TestRequestData> msg) {
+                return new Response<>(msg.getHeader(), new TestResponseData(msg.getData()),new ResponseStatus(200,"ok"));
+            }
+
+            @Override
+            public String getName() {
+                return "test_request_handler";
             }
         };
     }
