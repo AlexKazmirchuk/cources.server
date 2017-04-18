@@ -103,4 +103,18 @@ public class LoginRequestHandlerTest {
         assertThat(response.getStatus().getMessage(),is(ResponseStatusType.BAD_REQUEST.getMessage()));
     }
 
+    @Test
+    public void doHandleMethodTestWithNullValuesInData(){
+        LoginRequest loginRequest = new LoginRequest();
+        Response<LoginResponse> response = loginRequestHandler.doHandle(new Request<>(new ActionHeader(),loginRequest));
+
+        assertThat(response,notNullValue());
+        assertThat(response.getData(),nullValue());
+        assertThat(response.getHeader(),notNullValue());
+        assertThat(response.getStatus(),notNullValue());
+
+        assertThat(response.getStatus().getCode(),is(ResponseStatusType.BAD_REQUEST.getCode()));
+        assertThat(response.getStatus().getMessage(),is(ResponseStatusType.BAD_REQUEST.getMessage()));
+    }
+
 }
