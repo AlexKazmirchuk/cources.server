@@ -29,9 +29,7 @@ import static org.hamcrest.core.IsNull.notNullValue;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {AuthorizationAppCfgIT.class,
-                                 DataMapperAppCfg.class,
-                                 TokenServiceAppCfg.class})
+@ContextConfiguration(classes = {AuthorizationAppCfgIT.class})
 public class LoginRequestHandlerTest {
 
     @Autowired
