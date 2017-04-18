@@ -5,11 +5,9 @@ import com.softgroup.authorization.api.message.RegisterResponse;
 import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.authorization.impl.cache.AuthorizationCacheService;
 import com.softgroup.authorization.impl.cache.RegistrationCacheData;
-import com.softgroup.common.dao.impl.services.ProfileService;
 import com.softgroup.common.model.mapper.api.ModelMapper;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.ResponseStatusType;
 import com.softgroup.common.protocol.factories.MessageFactory;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +33,6 @@ public class RegisterRequestHandler
 
     @Autowired
     private ModelMapper modelMapper;
-
-    @Autowired
-    private ProfileService profileService;
 
     @Override
     public String getName() {
