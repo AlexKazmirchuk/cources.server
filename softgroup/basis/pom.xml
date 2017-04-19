@@ -18,6 +18,7 @@
         <module>common-cache</module>
         <module>common-jwt</module>
         <module>common-model-mapper</module>
+        <module>common-validation</module>
     </modules>
 
     <dependencies>
