@@ -1,8 +1,6 @@
 package com.softgroup.common.dao.api.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -24,6 +22,10 @@ public class ConversationSettingsEntity extends BaseEntity implements Serializab
 
     @Column(name = "logo_image_uri")
     private String logoImageUri;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "conversation_id")
+    private ConversationEntity conversation;
 
     public ConversationSettingsEntity() {
     }
@@ -52,6 +54,14 @@ public class ConversationSettingsEntity extends BaseEntity implements Serializab
         this.logoImageUri = logoImageUri;
     }
 
+    public ConversationEntity getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(ConversationEntity conversation) {
+        this.conversation = conversation;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,7 +71,8 @@ public class ConversationSettingsEntity extends BaseEntity implements Serializab
 
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (admin != null ? !admin.equals(that.admin) : that.admin != null) return false;
-        return logoImageUri != null ? logoImageUri.equals(that.logoImageUri) : that.logoImageUri == null;
+        if (logoImageUri != null ? !logoImageUri.equals(that.logoImageUri) : that.logoImageUri != null) return false;
+        return conversation != null ? conversation.equals(that.conversation) : that.conversation == null;
     }
 
     @Override
@@ -69,6 +80,7 @@ public class ConversationSettingsEntity extends BaseEntity implements Serializab
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (admin != null ? admin.hashCode() : 0);
         result = 31 * result + (logoImageUri != null ? logoImageUri.hashCode() : 0);
+        result = 31 * result + (conversation != null ? conversation.hashCode() : 0);
         return result;
     }
 }
