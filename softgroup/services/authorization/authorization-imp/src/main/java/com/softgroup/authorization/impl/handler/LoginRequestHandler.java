@@ -4,7 +4,7 @@ import com.softgroup.authorization.api.message.LoginRequest;
 import com.softgroup.authorization.api.message.LoginResponse;
 import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.common.jwt.api.TokenService;
-import com.softgroup.common.jwt.exceptions.InvalidTokenException;
+import com.softgroup.common.exceptions.InvalidTokenException;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatusType;

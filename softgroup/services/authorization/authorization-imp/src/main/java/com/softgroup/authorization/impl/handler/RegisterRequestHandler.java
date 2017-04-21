@@ -5,7 +5,6 @@ import com.softgroup.authorization.api.message.RegisterResponse;
 import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.authorization.impl.cache.AuthorizationCacheService;
 import com.softgroup.authorization.impl.cache.RegistrationCacheData;
-import com.softgroup.common.dao.impl.services.ProfileService;
 import com.softgroup.common.model.mapper.api.ModelMapper;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
@@ -36,9 +35,6 @@ public class RegisterRequestHandler
     @Autowired
     private ModelMapper modelMapper;
 
-    @Autowired
-    private ProfileService profileService;
-
     @Override
     public String getName() {
         return "register";
@@ -46,6 +42,8 @@ public class RegisterRequestHandler
 
     @Override
     public Response<RegisterResponse> doHandle(Request<RegisterRequest> msg) {
+
+        if (!validateData(msg.getData())) return MessageFactory.createResponse(msg,ResponseStatusType.BAD_REQUEST);
 
         RegistrationCacheData cacheData = modelMapper.map(msg.getData(),RegistrationCacheData.class);
 
@@ -68,4 +66,23 @@ public class RegisterRequestHandler
         return  String.valueOf(new Random().nextInt(999999));
     }
 
+    private boolean validateData(RegisterRequest data){
+        if (data == null || data.getDeviceID() == null || data.getLocaleCode() == null || data.getPhoneNumber() == null){
+            return false;
+        }
+        if (validateLocaleCode(data.getLocaleCode()) && validatePhoneNumber(data.getPhoneNumber())){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validateLocaleCode(String localeCode){
+        // todo implement later;
+        return true;
+    }
+
+    private boolean validatePhoneNumber(String phoneNumber){
+        // todo implement later;
+        return true;
+    }
 }

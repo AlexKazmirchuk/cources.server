@@ -18,8 +18,11 @@ import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 /**
- * Created by sasha on 23.02.17.
+ * @author AlexKazmirchuk
+ * @since 23.02.17.
  */
 
 @Component
@@ -47,6 +50,8 @@ public class SmsConfirmRequestHandler
     @Override
     public Response<SmsConfirmResponse> doHandle(Request<SmsConfirmRequest> msg) {
 
+        if (!validateData(msg.getData())) return MessageFactory.createResponse(msg,ResponseStatusType.BAD_REQUEST);
+
         String authCode = msg.getData().getAuthCode();
         String regRequestUuid = msg.getData().getRegistrationRequestUuid();
 
@@ -63,6 +68,18 @@ public class SmsConfirmRequestHandler
         } else {
             return MessageFactory.createResponse(msg, ResponseStatusType.NOT_ACCEPTABLE );
         }
+    }
+
+    private boolean validateData(SmsConfirmRequest data){
+        if (data.getAuthCode() == null || data.getRegistrationRequestUuid() == null){
+            return false;
+        }
+        try {
+            UUID.fromString(data.getRegistrationRequestUuid());
+        } catch (IllegalArgumentException ex){
+            return false;
+        }
+        return true;
     }
 
     private ProfileEntity processProfile(RegistrationCacheData regData){
@@ -106,7 +123,7 @@ public class SmsConfirmRequestHandler
     private ProfileEntity updateProfile(String phoneNumber){
         ProfileEntity profile = profileService.findByPhoneNumber(phoneNumber);
         profile.setUpdateDateTime(System.currentTimeMillis());
-        return profile;
+        return profileService.edit(profile);
     }
 
     private DeviceEntity createAndSaveDevice(RegistrationCacheData regData, ProfileEntity profile){
