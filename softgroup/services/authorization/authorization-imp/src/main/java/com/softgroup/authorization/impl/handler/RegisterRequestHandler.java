@@ -77,12 +77,12 @@ public class RegisterRequestHandler
     }
 
     private boolean validateLocaleCode(String localeCode){
-        // implement later;
+        // todo implement later;
         return true;
     }
 
     private boolean validatePhoneNumber(String phoneNumber){
-        // implement later;
+        // todo implement later;
         return true;
     }
 }
