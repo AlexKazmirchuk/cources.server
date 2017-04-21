@@ -5,6 +5,7 @@ import com.softgroup.authorization.impl.cache.AuthorizationCacheServiceImpl;
 import com.softgroup.authorization.impl.handler.LoginRequestHandler;
 import com.softgroup.authorization.impl.handler.RegisterRequestHandler;
 import com.softgroup.authorization.impl.handler.SmsConfirmRequestHandler;
+import com.softgroup.common.dao.api.entities.DeviceEntity;
 import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.impl.repositories.DeviceRepository;
 import com.softgroup.common.dao.impl.repositories.ProfileRepository;
@@ -19,7 +20,11 @@ import com.softgroup.common.model.mapper.impl.ModelMapperImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 /**
@@ -70,10 +75,12 @@ public class AuthorizationAppCfgIT {
         ProfileRepository profileRepository = mock(ProfileRepository.class);
         // todo add behavior
 
-        ProfileEntity profileEntity = new ProfileEntity();
-        profileEntity.setName("josh");
-        when(profileRepository.findByPhoneNumber("123")).thenReturn(profileEntity);
+        ProfileEntity existingProfile = new ProfileEntity();
+        existingProfile.setPhoneNumber("123456789");
+        existingProfile.setId("11223344");
 
+        when(profileRepository.findByPhoneNumber("123456789")).thenReturn(existingProfile);
+        when(profileRepository.save(any(ProfileEntity.class))).thenReturn(existingProfile);
         //
         return profileRepository;
     }
@@ -82,17 +89,26 @@ public class AuthorizationAppCfgIT {
     public DeviceRepository getDeviceRepository(){
         DeviceRepository deviceRepository = mock(DeviceRepository.class);
         // todo add behavior
+
+        DeviceEntity existingDevice = new DeviceEntity();
+        existingDevice.setId("323122");
+        existingDevice.setDeviceID("137894");
+
+        when(deviceRepository.findByProfileAndDeviceID(any(ProfileEntity.class),eq("323122"))).thenReturn(existingDevice);
+        when(deviceRepository.save(any(DeviceEntity.class))).thenReturn(existingDevice);
+
+        //
         return deviceRepository;
     }
 
     @Bean
     public ProfileService getProfileService(){
-        return new ProfileService();
+        return spy(new ProfileService());
     }
 
     @Bean
     public DeviceService getDeviceService(){
-        return new DeviceService();
+        return spy(new DeviceService());
     }
 
 }
